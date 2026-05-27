@@ -168,15 +168,17 @@ Device licensing installs apps silently via the MDM channel — no Apple ID or A
 **BYOD (personal / unsupervised) devices — use iOS Store App.**
 Users install apps from the App Store via their personal Apple ID. App Protection Policies apply by user identity. Assign to user groups.
 
-| App | Corporate (ADE) | BYOD | Assignment Target |
-|---|---|---|---|
-| **Microsoft Company Portal** | VPP — Device license — Required | iOS Store App — Available | Corporate: device groups / BYOD: user groups |
-| **Microsoft Authenticator** | VPP — Device license — Required | iOS Store App — Required | Corporate: device groups / BYOD: user groups |
-| **Microsoft Defender for Endpoint** | VPP — Device license — Required | iOS Store App — Required | Corporate: device groups / BYOD: user groups |
-| **Microsoft Outlook** | VPP — Device license — Required | iOS Store App — Available | Corporate: device groups / BYOD: user groups |
-| **Microsoft Teams** | VPP — Device license — Required | iOS Store App — Available | Corporate: device groups / BYOD: user groups |
-| **Microsoft Edge** | VPP — Device license — Required | iOS Store App — Available | Corporate: device groups / BYOD: user groups |
-| **Microsoft OneDrive** | VPP — Device license — Required | iOS Store App — Available | Corporate: device groups / BYOD: user groups |
+Assign Corporate apps to **device groups**. Assign BYOD apps to **user groups**.
+
+| App | Corporate (ADE) | BYOD |
+|---|---|---|
+| **Microsoft Company Portal** | VPP — Device license — Required | iOS Store App — Available |
+| **Microsoft Authenticator** | VPP — Device license — Required | iOS Store App — Required |
+| **Microsoft Defender for Endpoint** | VPP — Device license — Required | iOS Store App — Required |
+| **Microsoft Outlook** | VPP — Device license — Required | iOS Store App — Available |
+| **Microsoft Teams** | VPP — Device license — Required | iOS Store App — Available |
+| **Microsoft Edge** | VPP — Device license — Required | iOS Store App — Available |
+| **Microsoft OneDrive** | VPP — Device license — Required | iOS Store App — Available |
 
 **Company Portal on corporate ADE devices:** The ADE enrollment profile includes an **Install Company Portal** option that deploys it automatically during enrollment. If you configure that option, do not create a separate app assignment — doing so causes a conflict. See the Corporate Deployment Guide Section 7.2 for enrollment profile setup.
 

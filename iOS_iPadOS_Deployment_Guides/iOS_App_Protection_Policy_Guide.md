@@ -140,23 +140,23 @@ These settings control how corporate data moves into, out of, and between manage
 
 ### 6.1 Data Transfer
 
-| Setting | Level 1 | Level 2 | Level 3 | User Impact | Security Benefit |
-|---|---|---|---|---|---|
-| Backup org data to iTunes and iCloud backups | `Allow` | `Block` | `Block` | Medium | Prevents corporate data exposure in cloud backups |
-| Send org data to other apps | `All apps` | `Policy managed appsPolicy managed apps with Open-In/Share filtering` | `Policy managed apps` | High | Restricts data sharing to the managed app ecosystem |
-| Receive data from other apps | `All apps` | `All apps` | `Policy managed apps` | High | L3 blocks data entering from unmanaged sources |
-| Save copies of org data | `Allow` | `Block` | `Block` | High | Prevents unauthorized file export |
-| Allow user to save copies to selected services | `All` | `OneDrive for Business, SharePoint, Local Storage` | `OneDrive for Business, SharePoint` | Medium | Limits save destinations to corporate cloud only |
-| Transfer telecommunication data to | `Any dialer app` | `Any dialer app` | `A specific dialer app` | Low | L3 restricts phone call handling |
-| Restrict cut, copy, and paste between apps | `Any app` | `Policy managed apps with paste in` | `Policy managed apps with paste in` | High | Prevents clipboard data leakage to personal apps |
-| Screen capture | `Allow` | `Block` | `Block` | Medium | Prevents screenshots, screen recording, AirPlay mirroring, and QuickTime capture of corporate content |
-| Encrypt org data | `Require` | `Require` | `Require` | Low | Data encrypted at rest; automatically applied |
-| Sync policy managed app data with native apps or add-ins | `Allow` | `Allow` | `Block` | Medium | L3 prevents contact/calendar sync to native iOS apps |
-| Printing org data | `Allow` | `Block` | `Block` | Medium | Prevents physical data leakage via printing |
-| Restrict web content transfer with other apps | `Not configured` | `Microsoft Edge` | `Microsoft Edge` | Medium | All web links from managed apps open in Edge only |
-| Org data notifications | `Allow` | `Block org data` | `Block org data` | Low | Hides corporate data in lock screen notifications |
-| Genmoji | `Allow` | `Block` | `Block` | Low | Blocks use of Apple's AI Genmoji generator with org data; requires Intune App SDK v19.7.12+ (iOS 18+) |
-| Writing Tools | `Allow` | `Block` | `Block` | Low | Blocks Apple's AI Writing Tools from processing org data; requires Intune App SDK v19.7.12+ (iOS 18+) |
+| Setting | Level 1 | Level 2 | Level 3 | Notes |
+|---|---|---|---|---|
+| Backup org data to iTunes and iCloud backups | `Allow` | `Block` | `Block` | Medium — Prevents corporate data exposure in cloud backups |
+| Send org data to other apps | `All apps` | `Policy managed appsPolicy managed apps with Open-In/Share filtering` | `Policy managed apps` | High — Restricts data sharing to the managed app ecosystem |
+| Receive data from other apps | `All apps` | `All apps` | `Policy managed apps` | High — L3 blocks data entering from unmanaged sources |
+| Save copies of org data | `Allow` | `Block` | `Block` | High — Prevents unauthorized file export |
+| Allow user to save copies to selected services | `All` | `OneDrive for Business, SharePoint, Local Storage` | `OneDrive for Business, SharePoint` | Medium — Limits save destinations to corporate cloud only |
+| Transfer telecommunication data to | `Any dialer app` | `Any dialer app` | `A specific dialer app` | Low — L3 restricts phone call handling |
+| Restrict cut, copy, and paste between apps | `Any app` | `Policy managed apps with paste in` | `Policy managed apps with paste in` | High — Prevents clipboard data leakage to personal apps |
+| Screen capture | `Allow` | `Block` | `Block` | Medium — Prevents screenshots, screen recording, AirPlay mirroring, and QuickTime capture of corporate content |
+| Encrypt org data | `Require` | `Require` | `Require` | Low — Data encrypted at rest; automatically applied |
+| Sync policy managed app data with native apps or add-ins | `Allow` | `Allow` | `Block` | Medium — L3 prevents contact/calendar sync to native iOS apps |
+| Printing org data | `Allow` | `Block` | `Block` | Medium — Prevents physical data leakage via printing |
+| Restrict web content transfer with other apps | `Not configured` | `Microsoft Edge` | `Microsoft Edge` | Medium — All web links from managed apps open in Edge only |
+| Org data notifications | `Allow` | `Block org data` | `Block org data` | Low — Hides corporate data in lock screen notifications |
+| Genmoji | `Allow` | `Block` | `Block` | Low — Blocks use of Apple's AI Genmoji generator with org data; requires Intune App SDK v19.7.12+ (iOS 18+) |
+| Writing Tools | `Allow` | `Block` | `Block` | Low — Blocks Apple's AI Writing Tools from processing org data; requires Intune App SDK v19.7.12+ (iOS 18+) |
 
 > **Note on "Block org data" notifications:** At Level 2+, lock screen notifications from managed apps show a generic message ("You have a new message") instead of the actual content. This prevents sensitive data from being visible on a locked screen.
 
@@ -182,17 +182,17 @@ By default, the following Apple system URLs and schemes are exempted from data t
 
 These settings define how users must authenticate before accessing corporate data within managed apps.
 
-| Setting | Level 1 | Level 2 | Level 3 | User Impact | Security Benefit |
-|---|---|---|---|---|---|
-| PIN for access | `Require` | `Require` | `Require` | Medium | Controls access to corporate app data |
-| PIN type | `Numeric` | `Numeric` | `Passcode` | Medium | L3 requires alphanumeric PIN (letters + numbers) |
-| Simple PIN | `Allow` | `Allow` | `Block` | Medium | L3 prevents sequential/repeating digits |
-| Minimum PIN length | `4` | `6` | `8` | Medium | Longer PIN = stronger brute-force resistance |
-| Touch ID / Face ID instead of PIN | `Allow` | `Allow` | `Allow` | Low | Biometric convenience with PIN fallback |
-| Override biometrics with PIN after (minutes) | `1440` | `1440` | `1440` | Low | Requires PIN re-entry after 24-hour biometric timeout |
-| PIN reset after days | `No` | `No` | `365 days` | Low | L3 forces annual APP PIN rotation |
-| Work or school account credentials for access | `Not required` | `Not required` | `Not required` | Medium | Alternative to PIN; sign-in with Entra credentials |
-| Recheck access requirements after (minutes of inactivity) | `30` | `30` | `30` | Low | Re-prompts for authentication after 30 minutes idle |
+| Setting | Level 1 | Level 2 | Level 3 | Notes |
+|---|---|---|---|---|
+| PIN for access | `Require` | `Require` | `Require` | Medium — Controls access to corporate app data |
+| PIN type | `Numeric` | `Numeric` | `Passcode` | Medium — L3 requires alphanumeric PIN (letters + numbers) |
+| Simple PIN | `Allow` | `Allow` | `Block` | Medium — L3 prevents sequential/repeating digits |
+| Minimum PIN length | `4` | `6` | `8` | Medium — Longer PIN = stronger brute-force resistance |
+| Touch ID / Face ID instead of PIN | `Allow` | `Allow` | `Allow` | Low — Biometric convenience with PIN fallback |
+| Override biometrics with PIN after (minutes) | `1440` | `1440` | `1440` | Low — Requires PIN re-entry after 24-hour biometric timeout |
+| PIN reset after days | `No` | `No` | `365 days` | Low — L3 forces annual APP PIN rotation |
+| Work or school account credentials for access | `Not required` | `Not required` | `Not required` | Medium — Alternative to PIN; sign-in with Entra credentials |
+| Recheck access requirements after (minutes of inactivity) | `30` | `30` | `30` | Low — Re-prompts for authentication after 30 minutes idle |
 
 > **PIN vs Device Passcode:** When a device is MDM-enrolled and has a compliant device passcode, the APP PIN requirement can be optionally relaxed (the device passcode counts as the authentication factor). This is configured per-policy under "PIN for access" > "Disable app PIN when device PIN is managed." Recommended only for enrolled devices with strong device passcode enforcement (Level 1 enrolled policies only).
 
@@ -216,14 +216,14 @@ Conditional Launch settings define actions Intune takes when a device or app con
 
 ### 8.2 Device Conditions
 
-| Condition | Level 1 | Level 2 | Level 3 | User Impact | Security Benefit |
-|---|---|---|---|---|---|
-| Jailbroken/rooted devices | Block access | Block access | Wipe data | High | L3 wipes corporate data; L1/L2 blocks access |
-| Min OS version | Not configured | iOS 16.0 – Block | iOS 16.0 – Block | Medium | Ensures minimum security patch level |
-| Max OS version | Not configured | Not configured | Not configured | Low | Avoids blocking users on latest releases |
-| Min SDK version | Not configured | Not configured | Not configured | None | For internal app development validation |
-| Device threat level (unenrolled only) | Not configured | Not configured | `Secured` – Block access | High | Requires MDE threat signal for unenrolled BYOD |
-| Primary MTD service | — | — | Microsoft Defender for Endpoint | High | MDE provides threat signal for unenrolled devices |
+| Condition | Level 1 | Level 2 | Level 3 | User Impact — Security Benefit |
+|---|---|---|---|---|
+| Jailbroken/rooted devices | Block access | Block access | Wipe data | High — L3 wipes corporate data; L1/L2 blocks access |
+| Min OS version | Not configured | iOS 16.0 – Block | iOS 16.0 – Block | Medium — Ensures minimum security patch level |
+| Max OS version | Not configured | Not configured | Not configured | Low — Avoids blocking users on latest releases |
+| Min SDK version | Not configured | Not configured | Not configured | For internal app development validation |
+| Device threat level (unenrolled only) | Not configured | Not configured | `Secured` – Block access | High — Requires MDE threat signal for unenrolled BYOD |
+| Primary MTD service | — | — | Microsoft Defender for Endpoint | High — MDE provides threat signal for unenrolled devices |
 
 > **Device Threat Level for unenrolled BYOD (L3):** This requires Microsoft Defender for Endpoint to be deployed as an app to unenrolled personal devices. The threat signal flows through MAM, not device compliance. This is the L3 equivalent of the Defender integration on enrolled devices.
 

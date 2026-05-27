@@ -134,43 +134,43 @@ Outlook carries the highest data risk of any Microsoft 365 app on mobile. App Co
 
 ### 5.1 Account Configuration
 
-| Configuration Key | Value Type | Corporate (Managed Devices) | BYOD (Managed Apps) | Policy Type | User Impact | Notes |
-|---|---|---|---|---|---|---|
-| `com.microsoft.outlook.EmailProfile.EmailAddress` | String | `{{userprincipalname}}` | `{{userprincipalname}}` | Both | None | Auto-populates user's work email address |
-| `com.microsoft.outlook.EmailProfile.EmailAccountName` | String | `Corporate Email` | `Work Email` | Both | None | Friendly display name for the account |
-| `com.microsoft.outlook.EmailProfile.AccountType` | String | `ModernAuth` | `ModernAuth` | Both | None | Enforces Modern Authentication (OAuth); blocks Basic Auth |
+| Configuration Key | Corporate (Managed Devices) | BYOD (Managed Apps) | User Impact | Notes |
+|---|---|---|---|---|
+| `com.microsoft.outlook.EmailProfile.EmailAddress` | `{{userprincipalname}}` | `{{userprincipalname}}` | None | Auto-populates user's work email address |
+| `com.microsoft.outlook.EmailProfile.EmailAccountName` | `Corporate Email` | `Work Email` | None | Friendly display name for the account |
+| `com.microsoft.outlook.EmailProfile.AccountType` | `ModernAuth` | `ModernAuth` | None | Enforces Modern Authentication (OAuth); blocks Basic Auth |
 
 > **IntuneMAMUPN:** For Managed Device policies on enrolled devices, `IntuneMAMUPN` is configured as a standard key-value pair (`{{userprincipalname}}`) alongside other Outlook configuration keys. It identifies the enrolled user's work account within Outlook for MAM-related behaviors. Include it in Corporate Devices policies where `IntuneMAMAllowedAccountsOnly` is also set. For BYOD enrolled devices in this baseline, Outlook auto-populates the account via Modern Auth — `IntuneMAMUPN` is not required in the BYOD Managed Device policy unless single-account enforcement is needed.
 
 ### 5.2 Security Settings
 
-| Configuration Key | Value Type | Corporate Value | BYOD Value | Policy Type | User Impact | Security Benefit |
-|---|---|---|---|---|---|---|
-| `com.microsoft.outlook.Mail.ExternalRecipientsToolTipEnabled` | Boolean | `true` | `true` | Both | Low | Warns user when sending to external (non-corporate) email addresses; reduces accidental data leakage |
-| `com.microsoft.outlook.Mail.BlockFileImport` | Boolean | `true` | `false` | Both | Medium | Blocks attaching files from personal cloud storage (personal iCloud, Dropbox, Google Drive); BYOD set false to allow personal files |
-| `com.microsoft.outlook.Mail.SMIMEEnabled` | Boolean | `true` | `false` | Both | Medium | Enables S/MIME email signing and encryption; requires certificate deployment |
-| `com.microsoft.outlook.Mail.SMIMEAllowUserChange` | Boolean | `false` | `true` | Both | Low | Prevents users from disabling S/MIME on corporate devices; BYOD allows flexibility |
-| `com.microsoft.outlook.Auth.Biometric` | Boolean | `true` | `true` | Both | Medium | Requires Face ID or Touch ID to open Outlook; applied on both tracks |
+| Configuration Key | Corporate Value | BYOD Value | User Impact | Security Benefit |
+|---|---|---|---|---|
+| `com.microsoft.outlook.Mail.ExternalRecipientsToolTipEnabled` | `true` | `true` | Low | Warns user when sending to external (non-corporate) email addresses; reduces accidental data leakage |
+| `com.microsoft.outlook.Mail.BlockFileImport` | `true` | `false` | Medium | Blocks attaching files from personal cloud storage (personal iCloud, Dropbox, Google Drive); BYOD set false to allow personal files |
+| `com.microsoft.outlook.Mail.SMIMEEnabled` | `true` | `false` | Medium | Enables S/MIME email signing and encryption; requires certificate deployment |
+| `com.microsoft.outlook.Mail.SMIMEAllowUserChange` | `false` | `true` | Low | Prevents users from disabling S/MIME on corporate devices; BYOD allows flexibility |
+| `com.microsoft.outlook.Auth.Biometric` | `true` | `true` | Medium | Requires Face ID or Touch ID to open Outlook; applied on both tracks |
 
 > **S/MIME prerequisite:** Enabling S/MIME requires a signing/encryption certificate deployed via Intune Certificate Profile (SCEP or PKCS). See Section 13 of *iOS_CIS_Recommended_Settings_Guide.md* for certificate profile guidance. Do not enable S/MIME without first confirming certificate deployment.
 
 ### 5.3 Data & Sync Settings
 
-| Configuration Key | Value Type | Corporate Value | BYOD Value | Policy Type | User Impact | Notes |
-|---|---|---|---|---|---|---|
-| `com.microsoft.outlook.Mail.FocusedInbox` | Boolean | `false` | `true` | Both | Low | Disable Focused Inbox on corporate devices (users see all mail); enable on BYOD for convenience |
-| `com.microsoft.outlook.Mail.SyncWindowInDays` | Integer | `30` | `14` | Both | Low | Days of email to sync; limits historical data stored on device |
-| `com.microsoft.outlook.Contacts.SaveContacts` | Boolean | `false` | `true` | Both | Medium | Corporate: prevents Outlook contacts from copying to native iOS Contacts; BYOD: allow for user convenience |
-| `com.microsoft.outlook.Contacts.SyncEnabled` | Boolean | `false` | `true` | Both | Medium | Corporate: prevents contact sync to native iOS Contacts app (data leakage risk); BYOD: allow |
-| `com.microsoft.outlook.Calendar.SyncEnabled` | Boolean | `true` | `true` | Both | Low | Enables calendar sync for scheduling; recommended enabled for all |
+| Configuration Key | Corporate Value | BYOD Value | User Impact | Notes |
+|---|---|---|---|---|
+| `com.microsoft.outlook.Mail.FocusedInbox` | `false` | `true` | Low | Disable Focused Inbox on corporate devices (users see all mail); enable on BYOD for convenience |
+| `com.microsoft.outlook.Mail.SyncWindowInDays` | `30` | `14` | Low | Days of email to sync; limits historical data stored on device |
+| `com.microsoft.outlook.Contacts.SaveContacts` | `false` | `true` | Medium | Corporate: prevents Outlook contacts from copying to native iOS Contacts; BYOD: allow for user convenience |
+| `com.microsoft.outlook.Contacts.SyncEnabled` | `false` | `true` | Medium | Corporate: prevents contact sync to native iOS Contacts app (data leakage risk); BYOD: allow |
+| `com.microsoft.outlook.Calendar.SyncEnabled` | `true` | `true` | Low | Enables calendar sync for scheduling; recommended enabled for all |
 
 ### 5.4 Feature Restrictions
 
-| Configuration Key | Value Type | Corporate Value | BYOD Value | Policy Type | User Impact | Security Benefit |
-|---|---|---|---|---|---|---|
-| `com.microsoft.outlook.Mail.BlockPrinting` | Boolean | `true` | `false` | Both | Low | Blocks printing of emails and attachments on corporate devices |
-| `com.microsoft.outlook.Mail.OfficeFeedEnabled` | Boolean | `false` | `false` | Both | Low | Disables the Office Feed (recent activity and document suggestions); reduces data exposure and distraction |
-| `com.microsoft.outlook.Mail.DataClassificationEnabled` | Boolean | `true` | `false` | Both | Low | Enforces Microsoft Purview sensitivity labels on emails; requires Information Protection licensing |
+| Configuration Key | Corporate Value | BYOD Value | User Impact | Security Benefit |
+|---|---|---|---|---|
+| `com.microsoft.outlook.Mail.BlockPrinting` | `true` | `false` | Low | Blocks printing of emails and attachments on corporate devices |
+| `com.microsoft.outlook.Mail.OfficeFeedEnabled` | `false` | `false` | Low | Disables the Office Feed (recent activity and document suggestions); reduces data exposure and distraction |
+| `com.microsoft.outlook.Mail.DataClassificationEnabled` | `true` | `false` | Low | Enforces Microsoft Purview sensitivity labels on emails; requires Information Protection licensing |
 
 ### 5.5 Deployed Outlook Configuration Summary
 
@@ -201,17 +201,17 @@ Edge is the required managed browser for iOS in this baseline. It must be deploy
 
 ### 6.1 Homepage & New Tab
 
-| Configuration Key | Value Type | Corporate Value | BYOD Value | Policy Type | User Impact | Notes |
-|---|---|---|---|---|---|---|
-| `com.microsoft.intune.mam.managedbrowser.homepage` | String | Corporate intranet URL (e.g., `https://intranet.yourdomain.com`) | Default (blank) | Both | Low | Sets the browser home page; operational |
-| `com.microsoft.intune.mam.managedbrowser.NewTabPage.CustomURL` | String | Corporate portal URL | Default (blank) | Both | Low | Sets new tab page; operational |
+| Configuration Key | Corporate Value | BYOD Value | User Impact | Notes |
+|---|---|---|---|---|
+| `com.microsoft.intune.mam.managedbrowser.homepage` | Corporate intranet URL (e.g., `https://intranet.yourdomain.com`) | Default (blank) | Low | Sets the browser home page; operational |
+| `com.microsoft.intune.mam.managedbrowser.NewTabPage.CustomURL` | Corporate portal URL | Default (blank) | Low | Sets new tab page; operational |
 
 ### 6.2 URL Filtering
 
-| Configuration Key | Value Type | Corporate Value | BYOD Value | Policy Type | User Impact | Security Benefit |
-|---|---|---|---|---|---|---|
-| `com.microsoft.intune.mam.managedbrowser.AllowListURLs` | String | Define only if using strict allowlist (e.g., `https://yourdomain.com\|https://*.sharepoint.com`) | Not configured | Both | High | Restricts browsing to approved sites only; all other URLs blocked |
-| `com.microsoft.intune.mam.managedbrowser.BlockListURLs` | String | Block known risky/personal sites (e.g., `https://dropbox.com\|https://personal.cloud.com`) | Not configured | Both | Medium | Explicitly blocks specific URLs; all other sites allowed |
+| Configuration Key | Corporate Value | BYOD Value | User Impact | Security Benefit |
+|---|---|---|---|---|
+| `com.microsoft.intune.mam.managedbrowser.AllowListURLs` | Define only if using strict allowlist (e.g., `https://yourdomain.com\|https://*.sharepoint.com`) | Not configured | High | Restricts browsing to approved sites only; all other URLs blocked |
+| `com.microsoft.intune.mam.managedbrowser.BlockListURLs` | Block known risky/personal sites (e.g., `https://dropbox.com\|https://personal.cloud.com`) | Not configured | Medium | Explicitly blocks specific URLs; all other sites allowed |
 
 > **AllowList vs BlockList:** If both `AllowListURLs` and `BlockListURLs` are defined in the same policy, **only the AllowList is honored** — the BlockList is ignored. Use one or the other. AllowList is stricter (whitelist approach); BlockList is more permissive (blocklist approach). For most organizations, a BlockList of known high-risk sites is more practical than a full AllowList.
 
@@ -219,20 +219,20 @@ Edge is the required managed browser for iOS in this baseline. It must be deploy
 
 ### 6.3 Privacy & Security Features
 
-| Configuration Key | Value Type | Corporate Value | BYOD Value | Policy Type | User Impact | Security Benefit |
-|---|---|---|---|---|---|---|
-| `com.microsoft.intune.mam.managedbrowser.InPrivateEnabled` | Boolean | `false` | `true` | Both | Medium | Disables InPrivate (private) browsing on corporate devices; prevents untracked browsing sessions |
-| `com.microsoft.intune.mam.managedbrowser.SmartScreenEnabled` | Boolean | `true` | `true` | Both | None | Enables Microsoft Defender SmartScreen; blocks known phishing and malware sites |
-| `com.microsoft.intune.mam.managedbrowser.CertificateTransparencyEnabled` | Boolean | `true` | `true` | Both | None | Validates certificate transparency; detects fraudulent certificates |
-| `com.microsoft.intune.mam.managedbrowser.CookieBlockingLevel` | String | `blockThirdPartyCookies` | `blockThirdPartyCookies` | Both | Low | Blocks cross-site tracking cookies; use `blockAllCookies` for highest privacy (may break sites) |
+| Configuration Key | Corporate Value | BYOD Value | User Impact | Security Benefit |
+|---|---|---|---|---|
+| `com.microsoft.intune.mam.managedbrowser.InPrivateEnabled` | `false` | `true` | Medium | Disables InPrivate (private) browsing on corporate devices; prevents untracked browsing sessions |
+| `com.microsoft.intune.mam.managedbrowser.SmartScreenEnabled` | `true` | `true` | None | Enables Microsoft Defender SmartScreen; blocks known phishing and malware sites |
+| `com.microsoft.intune.mam.managedbrowser.CertificateTransparencyEnabled` | `true` | `true` | None | Validates certificate transparency; detects fraudulent certificates |
+| `com.microsoft.intune.mam.managedbrowser.CookieBlockingLevel` | `blockThirdPartyCookies` | `blockThirdPartyCookies` | Low | Blocks cross-site tracking cookies; use `blockAllCookies` for highest privacy (may break sites) |
 
 ### 6.4 Search & Bookmarks
 
-| Configuration Key | Value Type | Corporate Value | BYOD Value | Policy Type | User Impact | Notes |
-|---|---|---|---|---|---|---|
-| `com.microsoft.intune.mam.managedbrowser.SearchEngineDefault` | String | `https://www.bing.com/search?q={searchTerms}` | Default | Both | Low | Sets default search engine; operational |
-| `com.microsoft.intune.mam.managedbrowser.AllowSearchEngineCustomization` | Boolean | `false` | `true` | Both | Low | Prevents users from changing search engine on corporate devices |
-| `com.microsoft.intune.mam.managedbrowser.ManagedBookmarks` | String | JSON array of bookmark objects | Not configured | Both | Low | Pre-populates managed bookmarks (see format below) |
+| Configuration Key | Corporate Value | BYOD Value | User Impact | Notes |
+|---|---|---|---|---|
+| `com.microsoft.intune.mam.managedbrowser.SearchEngineDefault` | `https://www.bing.com/search?q={searchTerms}` | Default | Low | Sets default search engine; operational |
+| `com.microsoft.intune.mam.managedbrowser.AllowSearchEngineCustomization` | `false` | `true` | Low | Prevents users from changing search engine on corporate devices |
+| `com.microsoft.intune.mam.managedbrowser.ManagedBookmarks` | JSON array of bookmark objects | Not configured | Low | Pre-populates managed bookmarks (see format below) |
 
 **Managed Bookmarks format:**
 
@@ -244,9 +244,9 @@ Edge is the required managed browser for iOS in this baseline. It must be deploy
 
 ### 6.5 Password Manager
 
-| Configuration Key | Value Type | Corporate Value | BYOD Value | Policy Type | User Impact | Notes |
-|---|---|---|---|---|---|---|
-| `com.microsoft.intune.mam.managedbrowser.PasswordManagerSyncEnabled` | Boolean | `true` | `true` | Both | Low | Allows Edge to save and sync passwords; pairs with Microsoft Authenticator |
+| Configuration Key | Corporate Value | BYOD Value | User Impact | Notes |
+|---|---|---|---|---|
+| `com.microsoft.intune.mam.managedbrowser.PasswordManagerSyncEnabled` | `true` | `true` | Low | Allows Edge to save and sync passwords; pairs with Microsoft Authenticator |
 
 ### 6.6 Recommended Edge Configuration Summary
 
@@ -271,20 +271,20 @@ Teams configuration policies focus primarily on notification privacy and account
 
 > **Note:** Teams notification privacy for org data is controlled via **App Protection Policy** (Org data notifications = `Block org data`), not App Configuration Policy. The keys below handle other notification behaviors.
 
-| Configuration Key | Value Type | Corporate Value | BYOD Value | Policy Type | User Impact | Notes |
-|---|---|---|---|---|---|---|
-| `com.microsoft.teams.chat.notifications.IntuneMAMOnly` | Integer | `1` | `1` | Managed Apps | Low | Controls chat notifications for Intune-managed accounts; `1` = on, `0` = off |
-| `com.microsoft.teams.channel.notifications.IntuneMAMOnly` | Integer | `1` | `1` | Managed Apps | Low | Controls channel notifications for managed accounts |
-| `com.microsoft.teams.other.notifications.IntuneMAMOnly` | Integer | `1` | `1` | Managed Apps | Low | Controls all other Teams notifications for managed accounts |
+| Configuration Key | Corporate Value | BYOD Value | User Impact | Notes |
+|---|---|---|---|---|
+| `com.microsoft.teams.chat.notifications.IntuneMAMOnly` | `1` | `1` | Low | Controls chat notifications for Intune-managed accounts; `1` = on, `0` = off |
+| `com.microsoft.teams.channel.notifications.IntuneMAMOnly` | `1` | `1` | Low | Controls channel notifications for managed accounts |
+| `com.microsoft.teams.other.notifications.IntuneMAMOnly` | `1` | `1` | Low | Controls all other Teams notifications for managed accounts |
 
 > These notification keys ensure Teams notifications are delivered for the work account. Setting them to `0` suppresses all notifications — only configure `0` if there is a specific operational reason.
 
 ### 7.2 Account Configuration (Managed Devices Only)
 
-| Configuration Key | Value Type | Corporate Value | BYOD Value | Policy Type | User Impact | Notes |
-|---|---|---|---|---|---|---|
-| `com.microsoft.teams.account.AllowedAccounts` | String | Corporate domain (e.g., `yourdomain.com`) | Not configured | Managed Devices | High | Restricts Teams to corporate accounts only; prevents personal Microsoft accounts |
-| `domain_name` | String | `yourdomain.com` | Not configured | Managed Devices | Low | Pre-fills the corporate domain at sign-in; operational convenience |
+| Configuration Key | Corporate Value | BYOD Value | User Impact | Notes |
+|---|---|---|---|---|
+| `com.microsoft.teams.account.AllowedAccounts` | Corporate domain (e.g., `yourdomain.com`) | Not configured | High | Restricts Teams to corporate accounts only; prevents personal Microsoft accounts |
+| `domain_name` | `yourdomain.com` | Not configured | Low | Pre-fills the corporate domain at sign-in; operational convenience |
 
 > **Single account enforcement:** Setting `AllowedAccounts` to your corporate domain prevents users from signing into Teams with personal Microsoft accounts on corporate devices. This is recommended for supervised corporate devices (L2).
 
@@ -305,10 +305,10 @@ OneDrive configuration policies control which accounts can sync and what organiz
 
 ### 8.1 Account & Sync Settings
 
-| Configuration Key | Value Type | Corporate Value | BYOD Value | Policy Type | User Impact | Security Benefit |
-|---|---|---|---|---|---|---|
-| `com.microsoft.sharepoint.allowedTenantID` | String | Corporate tenant ID (from Entra ID) | Not configured | Managed Devices | High | Restricts OneDrive sync to the specified tenant only; blocks personal Microsoft accounts |
-| `com.microsoft.sharepoint.blockPersonalOneDrive` | Boolean | `true` | `false` | Both | High | Prevents access to personal OneDrive (personal Microsoft account); forces corporate OneDrive only |
+| Configuration Key | Corporate Value | BYOD Value | User Impact | Security Benefit |
+|---|---|---|---|---|
+| `com.microsoft.sharepoint.allowedTenantID` | Corporate tenant ID (from Entra ID) | Not configured | High | Restricts OneDrive sync to the specified tenant only; blocks personal Microsoft accounts |
+| `com.microsoft.sharepoint.blockPersonalOneDrive` | `true` | `false` | High | Prevents access to personal OneDrive (personal Microsoft account); forces corporate OneDrive only |
 
 > **Finding your Tenant ID:** In Microsoft Entra ID > Overview, the Tenant ID (Directory ID) is displayed. Copy this GUID and use it as the `allowedTenantID` value.
 
