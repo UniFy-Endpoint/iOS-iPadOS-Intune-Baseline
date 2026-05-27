@@ -1,0 +1,64 @@
+{
+  "@odata.context": "https://graph.microsoft.com/beta/$metadata#deviceAppManagement/mobileAppConfigurations(assignments())/$entity",
+  "@odata.type": "#microsoft.graph.iosMobileAppConfiguration",
+  "@odata.id": "deviceAppManagement/mobileAppConfigurations('f9f9845d-5bf8-45a7-8082-de22f08dd91c')",
+  "@odata.editLink": "deviceAppManagement/mobileAppConfigurations('f9f9845d-5bf8-45a7-8082-de22f08dd91c')/microsoft.graph.iosMobileAppConfiguration",
+  "id": "f9f9845d-5bf8-45a7-8082-de22f08dd91c",
+  "targetedMobileApps@odata.type": "#Collection(String)",
+  "targetedMobileApps": [
+    "5b1994c5-9482-4ad5-baf4-3deee89441b6"
+  ],
+  "roleScopeTagIds@odata.type": "#Collection(String)",
+  "roleScopeTagIds": [
+    "0"
+  ],
+  "createdDateTime@odata.type": "#DateTimeOffset",
+  "createdDateTime": "2026-05-26T14:55:33.1457311Z",
+  "description": "Configures Microsoft Edge for enrolled BYOD devices. Enables SmartScreen. Disables InPrivate browsing, Edge password manager, and form autofill.",
+  "lastModifiedDateTime@odata.type": "#DateTimeOffset",
+  "lastModifiedDateTime": "2026-05-26T14:55:55.8189387Z",
+  "displayName": "iOS_iPadOS - ACP - DEV - Microsoft Edge - BYOD Devices",
+  "version": 3,
+  "encodedSettingXml": null,
+  "settings@odata.type": "#Collection(microsoft.graph.appConfigurationSettingItem)",
+  "settings": [
+    {
+      "@odata.type": "#microsoft.graph.appConfigurationSettingItem",
+      "appConfigKey": "IntuneMAMUPN",
+      "appConfigKeyType@odata.type": "#microsoft.graph.mdmAppConfigKeyType",
+      "appConfigKeyType": "stringType",
+      "appConfigKeyValue": "{{UserPrincipalName}}"
+    },
+    {
+      "@odata.type": "#microsoft.graph.appConfigurationSettingItem",
+      "appConfigKey": "com.microsoft.intune.mam.managedbrowser.disabledFeatures",
+      "appConfigKeyType@odata.type": "#microsoft.graph.mdmAppConfigKeyType",
+      "appConfigKeyType": "stringType",
+      "appConfigKeyValue": "inprivate|password|autofill"
+    },
+    {
+      "@odata.type": "#microsoft.graph.appConfigurationSettingItem",
+      "appConfigKey": "com.microsoft.intune.mam.managedbrowser.SmartScreenEnabled",
+      "appConfigKeyType@odata.type": "#microsoft.graph.mdmAppConfigKeyType",
+      "appConfigKeyType": "booleanType",
+      "appConfigKeyValue": "true"
+    },
+  ],
+  "assignments@odata.context": "https://graph.microsoft.com/beta/$metadata#deviceAppManagement/mobileAppConfigurations('f9f9845d-5bf8-45a7-8082-de22f08dd91c')/microsoft.graph.iosMobileAppConfiguration/assignments",
+  "assignments@odata.associationLink": "https://graph.microsoft.com/beta/deviceAppManagement/mobileAppConfigurations('f9f9845d-5bf8-45a7-8082-de22f08dd91c')/microsoft.graph.iosMobileAppConfiguration/assignments/$ref",
+  "assignments@odata.navigationLink": "https://graph.microsoft.com/beta/deviceAppManagement/mobileAppConfigurations('f9f9845d-5bf8-45a7-8082-de22f08dd91c')/microsoft.graph.iosMobileAppConfiguration/assignments",
+  "assignments": [],
+  "deviceStatuses@odata.associationLink": "https://graph.microsoft.com/beta/deviceAppManagement/mobileAppConfigurations('f9f9845d-5bf8-45a7-8082-de22f08dd91c')/microsoft.graph.iosMobileAppConfiguration/deviceStatuses/$ref",
+  "deviceStatuses@odata.navigationLink": "https://graph.microsoft.com/beta/deviceAppManagement/mobileAppConfigurations('f9f9845d-5bf8-45a7-8082-de22f08dd91c')/microsoft.graph.iosMobileAppConfiguration/deviceStatuses",
+  "deviceStatusSummary@odata.associationLink": "https://graph.microsoft.com/beta/deviceAppManagement/mobileAppConfigurations('f9f9845d-5bf8-45a7-8082-de22f08dd91c')/microsoft.graph.iosMobileAppConfiguration/deviceStatusSummary/$ref",
+  "deviceStatusSummary@odata.navigationLink": "https://graph.microsoft.com/beta/deviceAppManagement/mobileAppConfigurations('f9f9845d-5bf8-45a7-8082-de22f08dd91c')/microsoft.graph.iosMobileAppConfiguration/deviceStatusSummary",
+  "userStatuses@odata.associationLink": "https://graph.microsoft.com/beta/deviceAppManagement/mobileAppConfigurations('f9f9845d-5bf8-45a7-8082-de22f08dd91c')/microsoft.graph.iosMobileAppConfiguration/userStatuses/$ref",
+  "userStatuses@odata.navigationLink": "https://graph.microsoft.com/beta/deviceAppManagement/mobileAppConfigurations('f9f9845d-5bf8-45a7-8082-de22f08dd91c')/microsoft.graph.iosMobileAppConfiguration/userStatuses",
+  "userStatusSummary@odata.associationLink": "https://graph.microsoft.com/beta/deviceAppManagement/mobileAppConfigurations('f9f9845d-5bf8-45a7-8082-de22f08dd91c')/microsoft.graph.iosMobileAppConfiguration/userStatusSummary/$ref",
+  "userStatusSummary@odata.navigationLink": "https://graph.microsoft.com/beta/deviceAppManagement/mobileAppConfigurations('f9f9845d-5bf8-45a7-8082-de22f08dd91c')/microsoft.graph.iosMobileAppConfiguration/userStatusSummary",
+  "#microsoft.graph.assign": {
+    "title": "microsoft.graph.assign",
+    "target": "https://graph.microsoft.com/beta/deviceAppManagement/mobileAppConfigurations('f9f9845d-5bf8-45a7-8082-de22f08dd91c')/microsoft.graph.managedDeviceMobileAppConfiguration/microsoft.graph.assign"
+  },
+  "#CustomRefTargetedApps": "Microsoft Edge: AI Browser|!|5b1994c5-9482-4ad5-baf4-3deee89441b6|!|#microsoft.graph.iosStoreApp"
+}

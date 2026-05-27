@@ -1,0 +1,266 @@
+{
+  "@odata.context": "https://graph.microsoft.com/beta/$metadata#deviceManagement/configurationPolicies(assignments(),settings())/$entity",
+  "@odata.type": "#microsoft.graph.deviceManagementConfigurationPolicy",
+  "@odata.id": "deviceManagement/configurationPolicies('8cfc99a3-b174-407a-8812-5d16899221c0')",
+  "@odata.editLink": "deviceManagement/configurationPolicies('8cfc99a3-b174-407a-8812-5d16899221c0')",
+  "createdDateTime@odata.type": "#DateTimeOffset",
+  "createdDateTime": "2026-05-18T18:39:38.039979Z",
+  "creationSource": null,
+  "description": "CIS iOS/iPadOS 26 Benchmark v1.0.0 device pairing controls for ADE/Corporate devices: audio accessory temporary pairing session (12-hour limit), Apple Watch pairing and wrist detection, host pairing restriction, proximity setup to new device, and USB Restricted Mode.",
+  "lastModifiedDateTime@odata.type": "#DateTimeOffset",
+  "lastModifiedDateTime": "2026-05-18T18:39:38.039979Z",
+  "name": "iOS_iPadOS - SC - DEV - Device Pairing - Corporate Devices",
+  "platforms@odata.type": "#microsoft.graph.deviceManagementConfigurationPlatforms",
+  "platforms": "iOS",
+  "priorityMetaData": null,
+  "roleScopeTagIds@odata.type": "#Collection(String)",
+  "roleScopeTagIds": [
+    "0"
+  ],
+  "settingCount": 2,
+  "technologies@odata.type": "#microsoft.graph.deviceManagementConfigurationTechnologies",
+  "technologies": "mdm,appleRemoteManagement",
+  "id": "8cfc99a3-b174-407a-8812-5d16899221c0",
+  "templateReference": {
+    "@odata.type": "#microsoft.graph.deviceManagementConfigurationPolicyTemplateReference",
+    "templateId": "",
+    "templateFamily@odata.type": "#microsoft.graph.deviceManagementConfigurationTemplateFamily",
+    "templateFamily": "none",
+    "templateDisplayName": null,
+    "templateDisplayVersion": null
+  },
+  "assignments@odata.context": "https://graph.microsoft.com/beta/$metadata#deviceManagement/configurationPolicies('8cfc99a3-b174-407a-8812-5d16899221c0')/assignments",
+  "assignments@odata.associationLink": "https://graph.microsoft.com/beta/deviceManagement/configurationPolicies('8cfc99a3-b174-407a-8812-5d16899221c0')/assignments/$ref",
+  "assignments@odata.navigationLink": "https://graph.microsoft.com/beta/deviceManagement/configurationPolicies('8cfc99a3-b174-407a-8812-5d16899221c0')/assignments",
+  "settings@odata.context": "https://graph.microsoft.com/beta/$metadata#deviceManagement/configurationPolicies('8cfc99a3-b174-407a-8812-5d16899221c0')/settings",
+  "settings@odata.associationLink": "https://graph.microsoft.com/beta/deviceManagement/configurationPolicies('8cfc99a3-b174-407a-8812-5d16899221c0')/settings/$ref",
+  "settings@odata.navigationLink": "https://graph.microsoft.com/beta/deviceManagement/configurationPolicies('8cfc99a3-b174-407a-8812-5d16899221c0')/settings",
+  "settings": [
+    {
+      "@odata.type": "#microsoft.graph.deviceManagementConfigurationSetting",
+      "@odata.id": "deviceManagement/configurationPolicies('8cfc99a3-b174-407a-8812-5d16899221c0')/settings('0')",
+      "@odata.editLink": "deviceManagement/configurationPolicies('8cfc99a3-b174-407a-8812-5d16899221c0')/settings('0')",
+      "id": "0",
+      "settingInstance": {
+        "@odata.type": "#microsoft.graph.deviceManagementConfigurationGroupSettingCollectionInstance",
+        "settingDefinitionId": "audioaccessory_audioaccessory",
+        "settingInstanceTemplateReference": null,
+        "auditRuleInformation": null,
+        "groupSettingCollectionValue@odata.type": "#Collection(microsoft.graph.deviceManagementConfigurationGroupSettingValue)",
+        "groupSettingCollectionValue": [
+          {
+            "@odata.type": "#microsoft.graph.deviceManagementConfigurationGroupSettingValue",
+            "settingValueTemplateReference": null,
+            "children@odata.type": "#Collection(microsoft.graph.deviceManagementConfigurationSettingInstance)",
+            "children": [
+              {
+                "@odata.type": "#microsoft.graph.deviceManagementConfigurationGroupSettingCollectionInstance",
+                "settingDefinitionId": "audioaccessory_temporarypairing",
+                "settingInstanceTemplateReference": null,
+                "auditRuleInformation": null,
+                "groupSettingCollectionValue@odata.type": "#Collection(microsoft.graph.deviceManagementConfigurationGroupSettingValue)",
+                "groupSettingCollectionValue": [
+                  {
+                    "@odata.type": "#microsoft.graph.deviceManagementConfigurationGroupSettingValue",
+                    "settingValueTemplateReference": null,
+                    "children@odata.type": "#Collection(microsoft.graph.deviceManagementConfigurationSettingInstance)",
+                    "children": [
+                      {
+                        "@odata.type": "#microsoft.graph.deviceManagementConfigurationGroupSettingCollectionInstance",
+                        "settingDefinitionId": "audioaccessory_temporarypairing_configuration",
+                        "settingInstanceTemplateReference": null,
+                        "auditRuleInformation": null,
+                        "groupSettingCollectionValue@odata.type": "#Collection(microsoft.graph.deviceManagementConfigurationGroupSettingValue)",
+                        "groupSettingCollectionValue": [
+                          {
+                            "@odata.type": "#microsoft.graph.deviceManagementConfigurationGroupSettingValue",
+                            "settingValueTemplateReference": null,
+                            "children@odata.type": "#Collection(microsoft.graph.deviceManagementConfigurationSettingInstance)",
+                            "children": [
+                              {
+                                "@odata.type": "#microsoft.graph.deviceManagementConfigurationGroupSettingCollectionInstance",
+                                "settingDefinitionId": "audioaccessory_temporarypairing_configuration_unpairingtime",
+                                "settingInstanceTemplateReference": null,
+                                "auditRuleInformation": null,
+                                "groupSettingCollectionValue@odata.type": "#Collection(microsoft.graph.deviceManagementConfigurationGroupSettingValue)",
+                                "groupSettingCollectionValue": [
+                                  {
+                                    "@odata.type": "#microsoft.graph.deviceManagementConfigurationGroupSettingValue",
+                                    "settingValueTemplateReference": null,
+                                    "children@odata.type": "#Collection(microsoft.graph.deviceManagementConfigurationSettingInstance)",
+                                    "children": [
+                                      {
+                                        "@odata.type": "#microsoft.graph.deviceManagementConfigurationSimpleSettingInstance",
+                                        "settingDefinitionId": "audioaccessory_temporarypairing_configuration_unpairingtime_hour",
+                                        "settingInstanceTemplateReference": null,
+                                        "auditRuleInformation": null,
+                                        "simpleSettingValue": {
+                                          "@odata.type": "#microsoft.graph.deviceManagementConfigurationIntegerSettingValue",
+                                          "settingValueTemplateReference": null,
+                                          "value": 12
+                                        }
+                                      },
+                                      {
+                                        "@odata.type": "#microsoft.graph.deviceManagementConfigurationChoiceSettingInstance",
+                                        "settingDefinitionId": "audioaccessory_temporarypairing_configuration_unpairingtime_policy",
+                                        "settingInstanceTemplateReference": null,
+                                        "auditRuleInformation": null,
+                                        "choiceSettingValue": {
+                                          "@odata.type": "#microsoft.graph.deviceManagementConfigurationChoiceSettingValue",
+                                          "settingValueTemplateReference": null,
+                                          "value": "audioaccessory_temporarypairing_configuration_unpairingtime_policy_1",
+                                          "children@odata.type": "#Collection(microsoft.graph.deviceManagementConfigurationSettingInstance)",
+                                          "children": []
+                                        }
+                                      }
+                                    ]
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "@odata.type": "#microsoft.graph.deviceManagementConfigurationChoiceSettingInstance",
+                        "settingDefinitionId": "audioaccessory_temporarypairing_disabled",
+                        "settingInstanceTemplateReference": null,
+                        "auditRuleInformation": null,
+                        "choiceSettingValue": {
+                          "@odata.type": "#microsoft.graph.deviceManagementConfigurationChoiceSettingValue",
+                          "settingValueTemplateReference": null,
+                          "value": "audioaccessory_temporarypairing_disabled_true",
+                          "children@odata.type": "#Collection(microsoft.graph.deviceManagementConfigurationSettingInstance)",
+                          "children": []
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "settingDefinitions@odata.associationLink": "https://graph.microsoft.com/beta/deviceManagement/configurationPolicies('8cfc99a3-b174-407a-8812-5d16899221c0')/settings('0')/settingDefinitions/$ref",
+      "settingDefinitions@odata.navigationLink": "https://graph.microsoft.com/beta/deviceManagement/configurationPolicies('8cfc99a3-b174-407a-8812-5d16899221c0')/settings('0')/settingDefinitions"
+    },
+    {
+      "@odata.type": "#microsoft.graph.deviceManagementConfigurationSetting",
+      "@odata.id": "deviceManagement/configurationPolicies('8cfc99a3-b174-407a-8812-5d16899221c0')/settings('1')",
+      "@odata.editLink": "deviceManagement/configurationPolicies('8cfc99a3-b174-407a-8812-5d16899221c0')/settings('1')",
+      "id": "1",
+      "settingInstance": {
+        "@odata.type": "#microsoft.graph.deviceManagementConfigurationGroupSettingCollectionInstance",
+        "settingDefinitionId": "com.apple.applicationaccess_com.apple.applicationaccess",
+        "settingInstanceTemplateReference": null,
+        "auditRuleInformation": null,
+        "groupSettingCollectionValue@odata.type": "#Collection(microsoft.graph.deviceManagementConfigurationGroupSettingValue)",
+        "groupSettingCollectionValue": [
+          {
+            "@odata.type": "#microsoft.graph.deviceManagementConfigurationGroupSettingValue",
+            "settingValueTemplateReference": null,
+            "children@odata.type": "#Collection(microsoft.graph.deviceManagementConfigurationSettingInstance)",
+            "children": [
+              {
+                "@odata.type": "#microsoft.graph.deviceManagementConfigurationChoiceSettingInstance",
+                "settingDefinitionId": "com.apple.applicationaccess_allowhostpairing",
+                "settingInstanceTemplateReference": null,
+                "auditRuleInformation": null,
+                "choiceSettingValue": {
+                  "@odata.type": "#microsoft.graph.deviceManagementConfigurationChoiceSettingValue",
+                  "settingValueTemplateReference": null,
+                  "value": "com.apple.applicationaccess_allowhostpairing_false",
+                  "children@odata.type": "#Collection(microsoft.graph.deviceManagementConfigurationSettingInstance)",
+                  "children": []
+                }
+              },
+              {
+                "@odata.type": "#microsoft.graph.deviceManagementConfigurationChoiceSettingInstance",
+                "settingDefinitionId": "com.apple.applicationaccess_allowpairedwatch",
+                "settingInstanceTemplateReference": null,
+                "auditRuleInformation": null,
+                "choiceSettingValue": {
+                  "@odata.type": "#microsoft.graph.deviceManagementConfigurationChoiceSettingValue",
+                  "settingValueTemplateReference": null,
+                  "value": "com.apple.applicationaccess_allowpairedwatch_true",
+                  "children@odata.type": "#Collection(microsoft.graph.deviceManagementConfigurationSettingInstance)",
+                  "children": []
+                }
+              },
+              {
+                "@odata.type": "#microsoft.graph.deviceManagementConfigurationChoiceSettingInstance",
+                "settingDefinitionId": "com.apple.applicationaccess_allowproximitysetuptonewdevice",
+                "settingInstanceTemplateReference": null,
+                "auditRuleInformation": null,
+                "choiceSettingValue": {
+                  "@odata.type": "#microsoft.graph.deviceManagementConfigurationChoiceSettingValue",
+                  "settingValueTemplateReference": null,
+                  "value": "com.apple.applicationaccess_allowproximitysetuptonewdevice_false",
+                  "children@odata.type": "#Collection(microsoft.graph.deviceManagementConfigurationSettingInstance)",
+                  "children": []
+                }
+              },
+              {
+                "@odata.type": "#microsoft.graph.deviceManagementConfigurationChoiceSettingInstance",
+                "settingDefinitionId": "com.apple.applicationaccess_allowusbrestrictedmode",
+                "settingInstanceTemplateReference": null,
+                "auditRuleInformation": null,
+                "choiceSettingValue": {
+                  "@odata.type": "#microsoft.graph.deviceManagementConfigurationChoiceSettingValue",
+                  "settingValueTemplateReference": null,
+                  "value": "com.apple.applicationaccess_allowusbrestrictedmode_true",
+                  "children@odata.type": "#Collection(microsoft.graph.deviceManagementConfigurationSettingInstance)",
+                  "children": []
+                }
+              },
+              {
+                "@odata.type": "#microsoft.graph.deviceManagementConfigurationChoiceSettingInstance",
+                "settingDefinitionId": "com.apple.applicationaccess_forcewatchwristdetection",
+                "settingInstanceTemplateReference": null,
+                "auditRuleInformation": null,
+                "choiceSettingValue": {
+                  "@odata.type": "#microsoft.graph.deviceManagementConfigurationChoiceSettingValue",
+                  "settingValueTemplateReference": null,
+                  "value": "com.apple.applicationaccess_forcewatchwristdetection_true",
+                  "children@odata.type": "#Collection(microsoft.graph.deviceManagementConfigurationSettingInstance)",
+                  "children": []
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "settingDefinitions@odata.associationLink": "https://graph.microsoft.com/beta/deviceManagement/configurationPolicies('8cfc99a3-b174-407a-8812-5d16899221c0')/settings('1')/settingDefinitions/$ref",
+      "settingDefinitions@odata.navigationLink": "https://graph.microsoft.com/beta/deviceManagement/configurationPolicies('8cfc99a3-b174-407a-8812-5d16899221c0')/settings('1')/settingDefinitions"
+    }
+  ],
+  "#microsoft.graph.assign": {
+    "title": "microsoft.graph.assign",
+    "target": "https://graph.microsoft.com/beta/deviceManagement/configurationPolicies('8cfc99a3-b174-407a-8812-5d16899221c0')/microsoft.graph.assign"
+  },
+  "#microsoft.graph.clearEnrollmentTimeDeviceMembershipTarget": {
+    "title": "microsoft.graph.clearEnrollmentTimeDeviceMembershipTarget",
+    "target": "https://graph.microsoft.com/beta/deviceManagement/configurationPolicies('8cfc99a3-b174-407a-8812-5d16899221c0')/microsoft.graph.clearEnrollmentTimeDeviceMembershipTarget"
+  },
+  "#microsoft.graph.createCopy": {
+    "title": "microsoft.graph.createCopy",
+    "target": "https://graph.microsoft.com/beta/deviceManagement/configurationPolicies('8cfc99a3-b174-407a-8812-5d16899221c0')/microsoft.graph.createCopy"
+  },
+  "#microsoft.graph.reorder": {
+    "title": "microsoft.graph.reorder",
+    "target": "https://graph.microsoft.com/beta/deviceManagement/configurationPolicies('8cfc99a3-b174-407a-8812-5d16899221c0')/microsoft.graph.reorder"
+  },
+  "#microsoft.graph.retrieveEnrollmentTimeDeviceMembershipTarget": {
+    "title": "microsoft.graph.retrieveEnrollmentTimeDeviceMembershipTarget",
+    "target": "https://graph.microsoft.com/beta/deviceManagement/configurationPolicies('8cfc99a3-b174-407a-8812-5d16899221c0')/microsoft.graph.retrieveEnrollmentTimeDeviceMembershipTarget"
+  },
+  "#microsoft.graph.setEnrollmentTimeDeviceMembershipTarget": {
+    "title": "microsoft.graph.setEnrollmentTimeDeviceMembershipTarget",
+    "target": "https://graph.microsoft.com/beta/deviceManagement/configurationPolicies('8cfc99a3-b174-407a-8812-5d16899221c0')/microsoft.graph.setEnrollmentTimeDeviceMembershipTarget"
+  },
+  "#microsoft.graph.retrieveLatestUpgradeDefaultBaselinePolicy": {
+    "title": "microsoft.graph.retrieveLatestUpgradeDefaultBaselinePolicy",
+    "target": "https://graph.microsoft.com/beta/deviceManagement/configurationPolicies('8cfc99a3-b174-407a-8812-5d16899221c0')/microsoft.graph.retrieveLatestUpgradeDefaultBaselinePolicy"
+  }
+}

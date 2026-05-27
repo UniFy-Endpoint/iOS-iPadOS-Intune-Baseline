@@ -1,0 +1,64 @@
+{
+  "@odata.context": "https://graph.microsoft.com/beta/$metadata#deviceAppManagement/mobileAppConfigurations(assignments())/$entity",
+  "@odata.type": "#microsoft.graph.iosMobileAppConfiguration",
+  "@odata.id": "deviceAppManagement/mobileAppConfigurations('99fc8dd9-38dd-4edb-9c0b-69f77163d0e4')",
+  "@odata.editLink": "deviceAppManagement/mobileAppConfigurations('99fc8dd9-38dd-4edb-9c0b-69f77163d0e4')/microsoft.graph.iosMobileAppConfiguration",
+  "id": "99fc8dd9-38dd-4edb-9c0b-69f77163d0e4",
+  "targetedMobileApps@odata.type": "#Collection(String)",
+  "targetedMobileApps": [
+    "6dcbb6aa-5829-41ae-af25-d71dc32b779e"
+  ],
+  "roleScopeTagIds@odata.type": "#Collection(String)",
+  "roleScopeTagIds": [
+    "0"
+  ],
+  "createdDateTime@odata.type": "#DateTimeOffset",
+  "createdDateTime": "2026-05-26T15:08:51.2074673Z",
+  "description": "Configures Microsoft SharePoint for corporate (VPP) devices. Restricts access to the corporate tenant and enforces corporate account only. Update allowedTenantID with the Entra tenant GUID before import.",
+  "lastModifiedDateTime@odata.type": "#DateTimeOffset",
+  "lastModifiedDateTime": "2026-05-26T15:08:51.2074673Z",
+  "displayName": "iOS_iPadOS - ACP - DEV - SharePoint - Corporate Devices",
+  "version": 1,
+  "encodedSettingXml": null,
+  "settings@odata.type": "#Collection(microsoft.graph.appConfigurationSettingItem)",
+  "settings": [
+    {
+      "@odata.type": "#microsoft.graph.appConfigurationSettingItem",
+      "appConfigKey": "IntuneMAMUPN",
+      "appConfigKeyType@odata.type": "#microsoft.graph.mdmAppConfigKeyType",
+      "appConfigKeyType": "stringType",
+      "appConfigKeyValue": "{{UserPrincipalName}}"
+    },
+    {
+      "@odata.type": "#microsoft.graph.appConfigurationSettingItem",
+      "appConfigKey": "IntuneMAMAllowedAccountsOnly",
+      "appConfigKeyType@odata.type": "#microsoft.graph.mdmAppConfigKeyType",
+      "appConfigKeyType": "stringType",
+      "appConfigKeyValue": "Enabled"
+    },
+    {
+      "@odata.type": "#microsoft.graph.appConfigurationSettingItem",
+      "appConfigKey": "com.microsoft.sharepoint.allowedTenantID",
+      "appConfigKeyType@odata.type": "#microsoft.graph.mdmAppConfigKeyType",
+      "appConfigKeyType": "stringType",
+      "appConfigKeyValue": "REPLACE:your-entra-tenant-guid"
+    }
+  ],
+  "assignments@odata.context": "https://graph.microsoft.com/beta/$metadata#deviceAppManagement/mobileAppConfigurations('99fc8dd9-38dd-4edb-9c0b-69f77163d0e4')/microsoft.graph.iosMobileAppConfiguration/assignments",
+  "assignments@odata.associationLink": "https://graph.microsoft.com/beta/deviceAppManagement/mobileAppConfigurations('99fc8dd9-38dd-4edb-9c0b-69f77163d0e4')/microsoft.graph.iosMobileAppConfiguration/assignments/$ref",
+  "assignments@odata.navigationLink": "https://graph.microsoft.com/beta/deviceAppManagement/mobileAppConfigurations('99fc8dd9-38dd-4edb-9c0b-69f77163d0e4')/microsoft.graph.iosMobileAppConfiguration/assignments",
+  "assignments": [],
+  "deviceStatuses@odata.associationLink": "https://graph.microsoft.com/beta/deviceAppManagement/mobileAppConfigurations('99fc8dd9-38dd-4edb-9c0b-69f77163d0e4')/microsoft.graph.iosMobileAppConfiguration/deviceStatuses/$ref",
+  "deviceStatuses@odata.navigationLink": "https://graph.microsoft.com/beta/deviceAppManagement/mobileAppConfigurations('99fc8dd9-38dd-4edb-9c0b-69f77163d0e4')/microsoft.graph.iosMobileAppConfiguration/deviceStatuses",
+  "deviceStatusSummary@odata.associationLink": "https://graph.microsoft.com/beta/deviceAppManagement/mobileAppConfigurations('99fc8dd9-38dd-4edb-9c0b-69f77163d0e4')/microsoft.graph.iosMobileAppConfiguration/deviceStatusSummary/$ref",
+  "deviceStatusSummary@odata.navigationLink": "https://graph.microsoft.com/beta/deviceAppManagement/mobileAppConfigurations('99fc8dd9-38dd-4edb-9c0b-69f77163d0e4')/microsoft.graph.iosMobileAppConfiguration/deviceStatusSummary",
+  "userStatuses@odata.associationLink": "https://graph.microsoft.com/beta/deviceAppManagement/mobileAppConfigurations('99fc8dd9-38dd-4edb-9c0b-69f77163d0e4')/microsoft.graph.iosMobileAppConfiguration/userStatuses/$ref",
+  "userStatuses@odata.navigationLink": "https://graph.microsoft.com/beta/deviceAppManagement/mobileAppConfigurations('99fc8dd9-38dd-4edb-9c0b-69f77163d0e4')/microsoft.graph.iosMobileAppConfiguration/userStatuses",
+  "userStatusSummary@odata.associationLink": "https://graph.microsoft.com/beta/deviceAppManagement/mobileAppConfigurations('99fc8dd9-38dd-4edb-9c0b-69f77163d0e4')/microsoft.graph.iosMobileAppConfiguration/userStatusSummary/$ref",
+  "userStatusSummary@odata.navigationLink": "https://graph.microsoft.com/beta/deviceAppManagement/mobileAppConfigurations('99fc8dd9-38dd-4edb-9c0b-69f77163d0e4')/microsoft.graph.iosMobileAppConfiguration/userStatusSummary",
+  "#microsoft.graph.assign": {
+    "title": "microsoft.graph.assign",
+    "target": "https://graph.microsoft.com/beta/deviceAppManagement/mobileAppConfigurations('99fc8dd9-38dd-4edb-9c0b-69f77163d0e4')/microsoft.graph.managedDeviceMobileAppConfiguration/microsoft.graph.assign"
+  },
+  "#CustomRefTargetedApps": "Microsoft SharePoint|!|6dcbb6aa-5829-41ae-af25-d71dc32b779e|!|#microsoft.graph.iosVppApp"
+}

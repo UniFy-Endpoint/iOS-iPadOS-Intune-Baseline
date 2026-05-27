@@ -1,0 +1,134 @@
+{
+  "@odata.context": "https://graph.microsoft.com/beta/$metadata#deviceAppManagement/mobileAppConfigurations(assignments())/$entity",
+  "@odata.type": "#microsoft.graph.iosMobileAppConfiguration",
+  "@odata.id": "deviceAppManagement/mobileAppConfigurations('b9357705-8d01-4c08-b57c-c35198371f64')",
+  "@odata.editLink": "deviceAppManagement/mobileAppConfigurations('b9357705-8d01-4c08-b57c-c35198371f64')/microsoft.graph.iosMobileAppConfiguration",
+  "id": "b9357705-8d01-4c08-b57c-c35198371f64",
+  "targetedMobileApps@odata.type": "#Collection(String)",
+  "targetedMobileApps": [
+    "5fdbfbb7-028f-4495-9991-8104e4657b83"
+  ],
+  "roleScopeTagIds@odata.type": "#Collection(String)",
+  "roleScopeTagIds": [
+    "0"
+  ],
+  "createdDateTime@odata.type": "#DateTimeOffset",
+  "createdDateTime": "2026-05-06T11:48:16.5327222Z",
+  "description": "App Configuration Policy for Microsoft Defender for Endpoint on ADE/Supervised corporate devices. Delivered via MDM channel. Enables web protection, network protection, and TVM. Assign to iOS - DEV - Corporate - All with Filter - iOS - Corporate.",
+  "lastModifiedDateTime@odata.type": "#DateTimeOffset",
+  "lastModifiedDateTime": "2026-05-06T16:25:58.3483709Z",
+  "displayName": "iOS_iPadOS - ACP - DEV - Microsoft Defender - Corporate Devices",
+  "version": 6,
+  "encodedSettingXml": null,
+  "settings@odata.type": "#Collection(microsoft.graph.appConfigurationSettingItem)",
+  "settings": [
+    {
+      "@odata.type": "#microsoft.graph.appConfigurationSettingItem",
+      "appConfigKey": "issupervised",
+      "appConfigKeyType@odata.type": "#microsoft.graph.mdmAppConfigKeyType",
+      "appConfigKeyType": "stringType",
+      "appConfigKeyValue": "{{issupervised}}"
+    },
+    {
+      "@odata.type": "#microsoft.graph.appConfigurationSettingItem",
+      "appConfigKey": "WebProtection",
+      "appConfigKeyType@odata.type": "#microsoft.graph.mdmAppConfigKeyType",
+      "appConfigKeyType": "stringType",
+      "appConfigKeyValue": "true"
+    },
+    {
+      "@odata.type": "#microsoft.graph.appConfigurationSettingItem",
+      "appConfigKey": "DefenderNetworkProtectionEnable",
+      "appConfigKeyType@odata.type": "#microsoft.graph.mdmAppConfigKeyType",
+      "appConfigKeyType": "stringType",
+      "appConfigKeyValue": "true"
+    },
+    {
+      "@odata.type": "#microsoft.graph.appConfigurationSettingItem",
+      "appConfigKey": "DefenderOpenNetworkDetection",
+      "appConfigKeyType@odata.type": "#microsoft.graph.mdmAppConfigKeyType",
+      "appConfigKeyType": "integerType",
+      "appConfigKeyValue": "2"
+    },
+    {
+      "@odata.type": "#microsoft.graph.appConfigurationSettingItem",
+      "appConfigKey": "DefenderEndUserTrustFlowEnable",
+      "appConfigKeyType@odata.type": "#microsoft.graph.mdmAppConfigKeyType",
+      "appConfigKeyType": "stringType",
+      "appConfigKeyValue": "true"
+    },
+    {
+      "@odata.type": "#microsoft.graph.appConfigurationSettingItem",
+      "appConfigKey": "DefenderNetworkProtectionAutoRemediation",
+      "appConfigKeyType@odata.type": "#microsoft.graph.mdmAppConfigKeyType",
+      "appConfigKeyType": "stringType",
+      "appConfigKeyValue": "true"
+    },
+    {
+      "@odata.type": "#microsoft.graph.appConfigurationSettingItem",
+      "appConfigKey": "DefenderNetworkProtectionPrivacy",
+      "appConfigKeyType@odata.type": "#microsoft.graph.mdmAppConfigKeyType",
+      "appConfigKeyType": "stringType",
+      "appConfigKeyValue": "true"
+    },
+    {
+      "@odata.type": "#microsoft.graph.appConfigurationSettingItem",
+      "appConfigKey": "DefenderTVMPrivacyMode",
+      "appConfigKeyType@odata.type": "#microsoft.graph.mdmAppConfigKeyType",
+      "appConfigKeyType": "integerType",
+      "appConfigKeyValue": "0"
+    },
+    {
+      "@odata.type": "#microsoft.graph.appConfigurationSettingItem",
+      "appConfigKey": "DefenderExcludeURLInReport",
+      "appConfigKeyType@odata.type": "#microsoft.graph.mdmAppConfigKeyType",
+      "appConfigKeyType": "integerType",
+      "appConfigKeyValue": "0"
+    },
+    {
+      "@odata.type": "#microsoft.graph.appConfigurationSettingItem",
+      "appConfigKey": "DisableSignOut",
+      "appConfigKeyType@odata.type": "#microsoft.graph.mdmAppConfigKeyType",
+      "appConfigKeyType": "stringType",
+      "appConfigKeyValue": "true"
+    },
+    {
+      "@odata.type": "#microsoft.graph.appConfigurationSettingItem",
+      "appConfigKey": "IntuneMAMUPN",
+      "appConfigKeyType@odata.type": "#microsoft.graph.mdmAppConfigKeyType",
+      "appConfigKeyType": "stringType",
+      "appConfigKeyValue": "{{userprincipalname}}"
+    },
+    {
+      "@odata.type": "#microsoft.graph.appConfigurationSettingItem",
+      "appConfigKey": "SuppressOSUpdateNotification",
+      "appConfigKeyType@odata.type": "#microsoft.graph.mdmAppConfigKeyType",
+      "appConfigKeyType": "stringType",
+      "appConfigKeyValue": "true"
+    },
+    {
+      "@odata.type": "#microsoft.graph.appConfigurationSettingItem",
+      "appConfigKey": "DefenderDeviceTag",
+      "appConfigKeyType@odata.type": "#microsoft.graph.mdmAppConfigKeyType",
+      "appConfigKeyType": "stringType",
+      "appConfigKeyValue": "iOS-iPadOS-MDM"
+    }
+  ],
+  "assignments@odata.context": "https://graph.microsoft.com/beta/$metadata#deviceAppManagement/mobileAppConfigurations('b9357705-8d01-4c08-b57c-c35198371f64')/microsoft.graph.iosMobileAppConfiguration/assignments",
+  "assignments@odata.associationLink": "https://graph.microsoft.com/beta/deviceAppManagement/mobileAppConfigurations('b9357705-8d01-4c08-b57c-c35198371f64')/microsoft.graph.iosMobileAppConfiguration/assignments/$ref",
+  "assignments@odata.navigationLink": "https://graph.microsoft.com/beta/deviceAppManagement/mobileAppConfigurations('b9357705-8d01-4c08-b57c-c35198371f64')/microsoft.graph.iosMobileAppConfiguration/assignments",
+  "assignments": [],
+  "deviceStatuses@odata.associationLink": "https://graph.microsoft.com/beta/deviceAppManagement/mobileAppConfigurations('b9357705-8d01-4c08-b57c-c35198371f64')/microsoft.graph.iosMobileAppConfiguration/deviceStatuses/$ref",
+  "deviceStatuses@odata.navigationLink": "https://graph.microsoft.com/beta/deviceAppManagement/mobileAppConfigurations('b9357705-8d01-4c08-b57c-c35198371f64')/microsoft.graph.iosMobileAppConfiguration/deviceStatuses",
+  "deviceStatusSummary@odata.associationLink": "https://graph.microsoft.com/beta/deviceAppManagement/mobileAppConfigurations('b9357705-8d01-4c08-b57c-c35198371f64')/microsoft.graph.iosMobileAppConfiguration/deviceStatusSummary/$ref",
+  "deviceStatusSummary@odata.navigationLink": "https://graph.microsoft.com/beta/deviceAppManagement/mobileAppConfigurations('b9357705-8d01-4c08-b57c-c35198371f64')/microsoft.graph.iosMobileAppConfiguration/deviceStatusSummary",
+  "userStatuses@odata.associationLink": "https://graph.microsoft.com/beta/deviceAppManagement/mobileAppConfigurations('b9357705-8d01-4c08-b57c-c35198371f64')/microsoft.graph.iosMobileAppConfiguration/userStatuses/$ref",
+  "userStatuses@odata.navigationLink": "https://graph.microsoft.com/beta/deviceAppManagement/mobileAppConfigurations('b9357705-8d01-4c08-b57c-c35198371f64')/microsoft.graph.iosMobileAppConfiguration/userStatuses",
+  "userStatusSummary@odata.associationLink": "https://graph.microsoft.com/beta/deviceAppManagement/mobileAppConfigurations('b9357705-8d01-4c08-b57c-c35198371f64')/microsoft.graph.iosMobileAppConfiguration/userStatusSummary/$ref",
+  "userStatusSummary@odata.navigationLink": "https://graph.microsoft.com/beta/deviceAppManagement/mobileAppConfigurations('b9357705-8d01-4c08-b57c-c35198371f64')/microsoft.graph.iosMobileAppConfiguration/userStatusSummary",
+  "#microsoft.graph.assign": {
+    "title": "microsoft.graph.assign",
+    "target": "https://graph.microsoft.com/beta/deviceAppManagement/mobileAppConfigurations('b9357705-8d01-4c08-b57c-c35198371f64')/microsoft.graph.managedDeviceMobileAppConfiguration/microsoft.graph.assign"
+  },
+  "#CustomRefTargetedApps": "Microsoft Defender: Security|!|5fdbfbb7-028f-4495-9991-8104e4657b83|!|#microsoft.graph.iosVppApp"
+}

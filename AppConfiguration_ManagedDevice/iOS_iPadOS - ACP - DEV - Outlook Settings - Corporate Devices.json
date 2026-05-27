@@ -1,0 +1,155 @@
+{
+  "@odata.context": "https://graph.microsoft.com/beta/$metadata#deviceAppManagement/mobileAppConfigurations(assignments())/$entity",
+  "@odata.type": "#microsoft.graph.iosMobileAppConfiguration",
+  "@odata.id": "deviceAppManagement/mobileAppConfigurations('ec32fddd-5155-4bf7-aef2-1203b9f80a92')",
+  "@odata.editLink": "deviceAppManagement/mobileAppConfigurations('ec32fddd-5155-4bf7-aef2-1203b9f80a92')/microsoft.graph.iosMobileAppConfiguration",
+  "id": "ec32fddd-5155-4bf7-aef2-1203b9f80a92",
+  "targetedMobileApps@odata.type": "#Collection(String)",
+  "targetedMobileApps": [
+    "90cad2f9-fda9-4e65-af48-c349a2491351"
+  ],
+  "roleScopeTagIds@odata.type": "#Collection(String)",
+  "roleScopeTagIds": [
+    "0"
+  ],
+  "createdDateTime@odata.type": "#DateTimeOffset",
+  "createdDateTime": "2026-05-26T12:37:47.7808021Z",
+  "description": "Configures Microsoft Outlook for corporate (VPP) devices. Enforces Modern Auth, restricts to a single corporate account, locks contacts sync enabled, requires biometric, disables AI features, and blocks file import and printing.",
+  "lastModifiedDateTime@odata.type": "#DateTimeOffset",
+  "lastModifiedDateTime": "2026-05-26T13:23:11.8748539Z",
+  "displayName": "iOS_iPadOS - ACP - DEV - Outlook Settings - Corporate Devices",
+  "version": 5,
+  "encodedSettingXml": null,
+  "settings@odata.type": "#Collection(microsoft.graph.appConfigurationSettingItem)",
+  "settings": [
+    {
+      "@odata.type": "#microsoft.graph.appConfigurationSettingItem",
+      "appConfigKey": "com.microsoft.outlook.EmailProfile.AccountType",
+      "appConfigKeyType@odata.type": "#microsoft.graph.mdmAppConfigKeyType",
+      "appConfigKeyType": "stringType",
+      "appConfigKeyValue": "ModernAuth"
+    },
+    {
+      "@odata.type": "#microsoft.graph.appConfigurationSettingItem",
+      "appConfigKey": "com.microsoft.outlook.EmailProfile.EmailUPN",
+      "appConfigKeyType@odata.type": "#microsoft.graph.mdmAppConfigKeyType",
+      "appConfigKeyType": "stringType",
+      "appConfigKeyValue": "{{userprincipalname}}"
+    },
+    {
+      "@odata.type": "#microsoft.graph.appConfigurationSettingItem",
+      "appConfigKey": "com.microsoft.outlook.EmailProfile.EmailAddress",
+      "appConfigKeyType@odata.type": "#microsoft.graph.mdmAppConfigKeyType",
+      "appConfigKeyType": "stringType",
+      "appConfigKeyValue": "{{mail}}"
+    },
+    {
+      "@odata.type": "#microsoft.graph.appConfigurationSettingItem",
+      "appConfigKey": "IntuneMAMAllowedAccountsOnly",
+      "appConfigKeyType@odata.type": "#microsoft.graph.mdmAppConfigKeyType",
+      "appConfigKeyType": "stringType",
+      "appConfigKeyValue": "Enabled"
+    },
+    {
+      "@odata.type": "#microsoft.graph.appConfigurationSettingItem",
+      "appConfigKey": "com.microsoft.outlook.Mail.FocusedInbox",
+      "appConfigKeyType@odata.type": "#microsoft.graph.mdmAppConfigKeyType",
+      "appConfigKeyType": "booleanType",
+      "appConfigKeyValue": "false"
+    },
+    {
+      "@odata.type": "#microsoft.graph.appConfigurationSettingItem",
+      "appConfigKey": "com.microsoft.outlook.Contacts.LocalSyncEnabled",
+      "appConfigKeyType@odata.type": "#microsoft.graph.mdmAppConfigKeyType",
+      "appConfigKeyType": "booleanType",
+      "appConfigKeyValue": "true"
+    },
+    {
+      "@odata.type": "#microsoft.graph.appConfigurationSettingItem",
+      "appConfigKey": "com.microsoft.outlook.Contacts.LocalSyncEnabled.UserChangeAllowed",
+      "appConfigKeyType@odata.type": "#microsoft.graph.mdmAppConfigKeyType",
+      "appConfigKeyType": "booleanType",
+      "appConfigKeyValue": "false"
+    },
+    {
+      "@odata.type": "#microsoft.graph.appConfigurationSettingItem",
+      "appConfigKey": "com.microsoft.outlook.Mail.SuggestedRepliesEnabled",
+      "appConfigKeyType@odata.type": "#microsoft.graph.mdmAppConfigKeyType",
+      "appConfigKeyType": "booleanType",
+      "appConfigKeyValue": "false"
+    },
+    {
+      "@odata.type": "#microsoft.graph.appConfigurationSettingItem",
+      "appConfigKey": "com.microsoft.outlook.Mail.ExternalRecipientsToolTipEnabled",
+      "appConfigKeyType@odata.type": "#microsoft.graph.mdmAppConfigKeyType",
+      "appConfigKeyType": "booleanType",
+      "appConfigKeyValue": "true"
+    },
+    {
+      "@odata.type": "#microsoft.graph.appConfigurationSettingItem",
+      "appConfigKey": "com.microsoft.outlook.Mail.OrganizeByThreadEnabled",
+      "appConfigKeyType@odata.type": "#microsoft.graph.mdmAppConfigKeyType",
+      "appConfigKeyType": "booleanType",
+      "appConfigKeyValue": "false"
+    },
+    {
+      "@odata.type": "#microsoft.graph.appConfigurationSettingItem",
+      "appConfigKey": "com.microsoft.outlook.Mail.PlayMyEmailsEnabled",
+      "appConfigKeyType@odata.type": "#microsoft.graph.mdmAppConfigKeyType",
+      "appConfigKeyType": "booleanType",
+      "appConfigKeyValue": "false"
+    },
+    {
+      "@odata.type": "#microsoft.graph.appConfigurationSettingItem",
+      "appConfigKey": "com.microsoft.outlook.Mail.OfficeFeedEnabled",
+      "appConfigKeyType@odata.type": "#microsoft.graph.mdmAppConfigKeyType",
+      "appConfigKeyType": "booleanType",
+      "appConfigKeyValue": "false"
+    },
+    {
+      "@odata.type": "#microsoft.graph.appConfigurationSettingItem",
+      "appConfigKey": "com.microsoft.outlook.Auth.Biometric",
+      "appConfigKeyType@odata.type": "#microsoft.graph.mdmAppConfigKeyType",
+      "appConfigKeyType": "booleanType",
+      "appConfigKeyValue": "true"
+    },
+    {
+      "@odata.type": "#microsoft.graph.appConfigurationSettingItem",
+      "appConfigKey": "com.microsoft.outlook.Mail.BlockFileImport",
+      "appConfigKeyType@odata.type": "#microsoft.graph.mdmAppConfigKeyType",
+      "appConfigKeyType": "booleanType",
+      "appConfigKeyValue": "true"
+    },
+    {
+      "@odata.type": "#microsoft.graph.appConfigurationSettingItem",
+      "appConfigKey": "com.microsoft.outlook.Mail.BlockPrinting",
+      "appConfigKeyType@odata.type": "#microsoft.graph.mdmAppConfigKeyType",
+      "appConfigKeyType": "booleanType",
+      "appConfigKeyValue": "true"
+    },
+    {
+      "@odata.type": "#microsoft.graph.appConfigurationSettingItem",
+      "appConfigKey": "IntuneMAMUPN",
+      "appConfigKeyType@odata.type": "#microsoft.graph.mdmAppConfigKeyType",
+      "appConfigKeyType": "stringType",
+      "appConfigKeyValue": "{{userprincipalname}}"
+    }
+  ],
+  "assignments@odata.context": "https://graph.microsoft.com/beta/$metadata#deviceAppManagement/mobileAppConfigurations('ec32fddd-5155-4bf7-aef2-1203b9f80a92')/microsoft.graph.iosMobileAppConfiguration/assignments",
+  "assignments@odata.associationLink": "https://graph.microsoft.com/beta/deviceAppManagement/mobileAppConfigurations('ec32fddd-5155-4bf7-aef2-1203b9f80a92')/microsoft.graph.iosMobileAppConfiguration/assignments/$ref",
+  "assignments@odata.navigationLink": "https://graph.microsoft.com/beta/deviceAppManagement/mobileAppConfigurations('ec32fddd-5155-4bf7-aef2-1203b9f80a92')/microsoft.graph.iosMobileAppConfiguration/assignments",
+  "assignments": [],
+  "deviceStatuses@odata.associationLink": "https://graph.microsoft.com/beta/deviceAppManagement/mobileAppConfigurations('ec32fddd-5155-4bf7-aef2-1203b9f80a92')/microsoft.graph.iosMobileAppConfiguration/deviceStatuses/$ref",
+  "deviceStatuses@odata.navigationLink": "https://graph.microsoft.com/beta/deviceAppManagement/mobileAppConfigurations('ec32fddd-5155-4bf7-aef2-1203b9f80a92')/microsoft.graph.iosMobileAppConfiguration/deviceStatuses",
+  "deviceStatusSummary@odata.associationLink": "https://graph.microsoft.com/beta/deviceAppManagement/mobileAppConfigurations('ec32fddd-5155-4bf7-aef2-1203b9f80a92')/microsoft.graph.iosMobileAppConfiguration/deviceStatusSummary/$ref",
+  "deviceStatusSummary@odata.navigationLink": "https://graph.microsoft.com/beta/deviceAppManagement/mobileAppConfigurations('ec32fddd-5155-4bf7-aef2-1203b9f80a92')/microsoft.graph.iosMobileAppConfiguration/deviceStatusSummary",
+  "userStatuses@odata.associationLink": "https://graph.microsoft.com/beta/deviceAppManagement/mobileAppConfigurations('ec32fddd-5155-4bf7-aef2-1203b9f80a92')/microsoft.graph.iosMobileAppConfiguration/userStatuses/$ref",
+  "userStatuses@odata.navigationLink": "https://graph.microsoft.com/beta/deviceAppManagement/mobileAppConfigurations('ec32fddd-5155-4bf7-aef2-1203b9f80a92')/microsoft.graph.iosMobileAppConfiguration/userStatuses",
+  "userStatusSummary@odata.associationLink": "https://graph.microsoft.com/beta/deviceAppManagement/mobileAppConfigurations('ec32fddd-5155-4bf7-aef2-1203b9f80a92')/microsoft.graph.iosMobileAppConfiguration/userStatusSummary/$ref",
+  "userStatusSummary@odata.navigationLink": "https://graph.microsoft.com/beta/deviceAppManagement/mobileAppConfigurations('ec32fddd-5155-4bf7-aef2-1203b9f80a92')/microsoft.graph.iosMobileAppConfiguration/userStatusSummary",
+  "#microsoft.graph.assign": {
+    "title": "microsoft.graph.assign",
+    "target": "https://graph.microsoft.com/beta/deviceAppManagement/mobileAppConfigurations('ec32fddd-5155-4bf7-aef2-1203b9f80a92')/microsoft.graph.managedDeviceMobileAppConfiguration/microsoft.graph.assign"
+  },
+  "#CustomRefTargetedApps": "Microsoft Outlook|!|90cad2f9-fda9-4e65-af48-c349a2491351|!|#microsoft.graph.iosVppApp"
+}

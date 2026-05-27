@@ -1,0 +1,50 @@
+{
+  "@odata.context": "https://graph.microsoft.com/beta/$metadata#deviceAppManagement/mobileAppConfigurations(assignments())/$entity",
+  "@odata.type": "#microsoft.graph.iosMobileAppConfiguration",
+  "@odata.id": "deviceAppManagement/mobileAppConfigurations('22e0fbad-bb3e-4a6e-afba-7da3a05570ff')",
+  "@odata.editLink": "deviceAppManagement/mobileAppConfigurations('22e0fbad-bb3e-4a6e-afba-7da3a05570ff')/microsoft.graph.iosMobileAppConfiguration",
+  "id": "22e0fbad-bb3e-4a6e-afba-7da3a05570ff",
+  "targetedMobileApps@odata.type": "#Collection(String)",
+  "targetedMobileApps": [
+    "77e8db52-1e5e-421b-8b6f-2476f7509f00"
+  ],
+  "roleScopeTagIds@odata.type": "#Collection(String)",
+  "roleScopeTagIds": [
+    "0"
+  ],
+  "createdDateTime@odata.type": "#DateTimeOffset",
+  "createdDateTime": "2026-05-06T11:48:16.0144611Z",
+  "description": "Enables Entra Shared Device Mode (SDM) on Microsoft Authenticator for ADE-enrolled shared iOS devices. Provides global SSO sign-in and sign-out across all MSAL-enabled Microsoft apps for frontline workers.",
+  "lastModifiedDateTime@odata.type": "#DateTimeOffset",
+  "lastModifiedDateTime": "2026-05-06T11:48:16.0144611Z",
+  "displayName": "iOS_iPadOS - ACP - DEV - Microsoft Authenticator - Shared Device Mode",
+  "version": 1,
+  "encodedSettingXml": null,
+  "settings@odata.type": "#Collection(microsoft.graph.appConfigurationSettingItem)",
+  "settings": [
+    {
+      "@odata.type": "#microsoft.graph.appConfigurationSettingItem",
+      "appConfigKey": "sharedDeviceMode",
+      "appConfigKeyType@odata.type": "#microsoft.graph.mdmAppConfigKeyType",
+      "appConfigKeyType": "booleanType",
+      "appConfigKeyValue": "true"
+    }
+  ],
+  "assignments@odata.context": "https://graph.microsoft.com/beta/$metadata#deviceAppManagement/mobileAppConfigurations('22e0fbad-bb3e-4a6e-afba-7da3a05570ff')/microsoft.graph.iosMobileAppConfiguration/assignments",
+  "assignments@odata.associationLink": "https://graph.microsoft.com/beta/deviceAppManagement/mobileAppConfigurations('22e0fbad-bb3e-4a6e-afba-7da3a05570ff')/microsoft.graph.iosMobileAppConfiguration/assignments/$ref",
+  "assignments@odata.navigationLink": "https://graph.microsoft.com/beta/deviceAppManagement/mobileAppConfigurations('22e0fbad-bb3e-4a6e-afba-7da3a05570ff')/microsoft.graph.iosMobileAppConfiguration/assignments",
+  "assignments": [],
+  "deviceStatuses@odata.associationLink": "https://graph.microsoft.com/beta/deviceAppManagement/mobileAppConfigurations('22e0fbad-bb3e-4a6e-afba-7da3a05570ff')/microsoft.graph.iosMobileAppConfiguration/deviceStatuses/$ref",
+  "deviceStatuses@odata.navigationLink": "https://graph.microsoft.com/beta/deviceAppManagement/mobileAppConfigurations('22e0fbad-bb3e-4a6e-afba-7da3a05570ff')/microsoft.graph.iosMobileAppConfiguration/deviceStatuses",
+  "deviceStatusSummary@odata.associationLink": "https://graph.microsoft.com/beta/deviceAppManagement/mobileAppConfigurations('22e0fbad-bb3e-4a6e-afba-7da3a05570ff')/microsoft.graph.iosMobileAppConfiguration/deviceStatusSummary/$ref",
+  "deviceStatusSummary@odata.navigationLink": "https://graph.microsoft.com/beta/deviceAppManagement/mobileAppConfigurations('22e0fbad-bb3e-4a6e-afba-7da3a05570ff')/microsoft.graph.iosMobileAppConfiguration/deviceStatusSummary",
+  "userStatuses@odata.associationLink": "https://graph.microsoft.com/beta/deviceAppManagement/mobileAppConfigurations('22e0fbad-bb3e-4a6e-afba-7da3a05570ff')/microsoft.graph.iosMobileAppConfiguration/userStatuses/$ref",
+  "userStatuses@odata.navigationLink": "https://graph.microsoft.com/beta/deviceAppManagement/mobileAppConfigurations('22e0fbad-bb3e-4a6e-afba-7da3a05570ff')/microsoft.graph.iosMobileAppConfiguration/userStatuses",
+  "userStatusSummary@odata.associationLink": "https://graph.microsoft.com/beta/deviceAppManagement/mobileAppConfigurations('22e0fbad-bb3e-4a6e-afba-7da3a05570ff')/microsoft.graph.iosMobileAppConfiguration/userStatusSummary/$ref",
+  "userStatusSummary@odata.navigationLink": "https://graph.microsoft.com/beta/deviceAppManagement/mobileAppConfigurations('22e0fbad-bb3e-4a6e-afba-7da3a05570ff')/microsoft.graph.iosMobileAppConfiguration/userStatusSummary",
+  "#microsoft.graph.assign": {
+    "title": "microsoft.graph.assign",
+    "target": "https://graph.microsoft.com/beta/deviceAppManagement/mobileAppConfigurations('22e0fbad-bb3e-4a6e-afba-7da3a05570ff')/microsoft.graph.managedDeviceMobileAppConfiguration/microsoft.graph.assign"
+  },
+  "#CustomRefTargetedApps": "Microsoft Authenticator|!|77e8db52-1e5e-421b-8b6f-2476f7509f00|!|#microsoft.graph.iosStoreApp"
+}

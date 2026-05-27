@@ -1,0 +1,49 @@
+{
+  "@odata.context": "https://graph.microsoft.com/beta/$metadata#deviceAppManagement/mobileAppConfigurations(assignments())/$entity",
+  "@odata.type": "#microsoft.graph.iosMobileAppConfiguration",
+  "@odata.id": "deviceAppManagement/mobileAppConfigurations('9a5f80ea-49c5-4cc9-9f07-b5f2d63a9951')",
+  "@odata.editLink": "deviceAppManagement/mobileAppConfigurations('9a5f80ea-49c5-4cc9-9f07-b5f2d63a9951')/microsoft.graph.iosMobileAppConfiguration",
+  "id": "9a5f80ea-49c5-4cc9-9f07-b5f2d63a9951",
+  "targetedMobileApps@odata.type": "#Collection(String)",
+  "targetedMobileApps": [
+    "bdaf6149-0ad7-47f6-89b8-6fb429fa9184"
+  ],
+  "roleScopeTagIds@odata.type": "#Collection(String)",
+  "roleScopeTagIds": [
+    "0"
+  ],
+  "createdDateTime@odata.type": "#DateTimeOffset",
+  "createdDateTime": "2026-04-30T13:53:37.3966739Z",
+  "description": "Configures Microsoft Teams for enrolled BYOD devices. Pre-populates sign-in identity via IntuneMAMUPN for enrolled personal devices.",
+  "lastModifiedDateTime@odata.type": "#DateTimeOffset",
+  "lastModifiedDateTime": "2026-05-05T19:58:24.450553Z",
+  "displayName": "iOS_iPadOS - ACP - DEV - Microsoft Teams - BYOD Devices",
+  "version": 3,
+  "encodedSettingXml": null,
+  "settings@odata.type": "#Collection(microsoft.graph.appConfigurationSettingItem)",
+  "settings": [
+    {
+      "@odata.type": "#microsoft.graph.appConfigurationSettingItem",
+      "appConfigKey": "IntuneMAMUPN",
+      "appConfigKeyType@odata.type": "#microsoft.graph.mdmAppConfigKeyType",
+      "appConfigKeyType": "stringType",
+      "appConfigKeyValue": "{{UserPrincipalName}}"
+    }
+  ],
+  "assignments@odata.context": "https://graph.microsoft.com/beta/$metadata#deviceAppManagement/mobileAppConfigurations('9a5f80ea-49c5-4cc9-9f07-b5f2d63a9951')/microsoft.graph.iosMobileAppConfiguration/assignments",
+  "assignments@odata.associationLink": "https://graph.microsoft.com/beta/deviceAppManagement/mobileAppConfigurations('9a5f80ea-49c5-4cc9-9f07-b5f2d63a9951')/microsoft.graph.iosMobileAppConfiguration/assignments/$ref",
+  "assignments@odata.navigationLink": "https://graph.microsoft.com/beta/deviceAppManagement/mobileAppConfigurations('9a5f80ea-49c5-4cc9-9f07-b5f2d63a9951')/microsoft.graph.iosMobileAppConfiguration/assignments",
+  "deviceStatuses@odata.associationLink": "https://graph.microsoft.com/beta/deviceAppManagement/mobileAppConfigurations('9a5f80ea-49c5-4cc9-9f07-b5f2d63a9951')/microsoft.graph.iosMobileAppConfiguration/deviceStatuses/$ref",
+  "deviceStatuses@odata.navigationLink": "https://graph.microsoft.com/beta/deviceAppManagement/mobileAppConfigurations('9a5f80ea-49c5-4cc9-9f07-b5f2d63a9951')/microsoft.graph.iosMobileAppConfiguration/deviceStatuses",
+  "deviceStatusSummary@odata.associationLink": "https://graph.microsoft.com/beta/deviceAppManagement/mobileAppConfigurations('9a5f80ea-49c5-4cc9-9f07-b5f2d63a9951')/microsoft.graph.iosMobileAppConfiguration/deviceStatusSummary/$ref",
+  "deviceStatusSummary@odata.navigationLink": "https://graph.microsoft.com/beta/deviceAppManagement/mobileAppConfigurations('9a5f80ea-49c5-4cc9-9f07-b5f2d63a9951')/microsoft.graph.iosMobileAppConfiguration/deviceStatusSummary",
+  "userStatuses@odata.associationLink": "https://graph.microsoft.com/beta/deviceAppManagement/mobileAppConfigurations('9a5f80ea-49c5-4cc9-9f07-b5f2d63a9951')/microsoft.graph.iosMobileAppConfiguration/userStatuses/$ref",
+  "userStatuses@odata.navigationLink": "https://graph.microsoft.com/beta/deviceAppManagement/mobileAppConfigurations('9a5f80ea-49c5-4cc9-9f07-b5f2d63a9951')/microsoft.graph.iosMobileAppConfiguration/userStatuses",
+  "userStatusSummary@odata.associationLink": "https://graph.microsoft.com/beta/deviceAppManagement/mobileAppConfigurations('9a5f80ea-49c5-4cc9-9f07-b5f2d63a9951')/microsoft.graph.iosMobileAppConfiguration/userStatusSummary/$ref",
+  "userStatusSummary@odata.navigationLink": "https://graph.microsoft.com/beta/deviceAppManagement/mobileAppConfigurations('9a5f80ea-49c5-4cc9-9f07-b5f2d63a9951')/microsoft.graph.iosMobileAppConfiguration/userStatusSummary",
+  "#microsoft.graph.assign": {
+    "title": "microsoft.graph.assign",
+    "target": "https://graph.microsoft.com/beta/deviceAppManagement/mobileAppConfigurations('9a5f80ea-49c5-4cc9-9f07-b5f2d63a9951')/microsoft.graph.managedDeviceMobileAppConfiguration/microsoft.graph.assign"
+  },
+  "#CustomRefTargetedApps": "Microsoft Teams|!|bdaf6149-0ad7-47f6-89b8-6fb429fa9184|!|#microsoft.graph.iosStoreApp"
+}

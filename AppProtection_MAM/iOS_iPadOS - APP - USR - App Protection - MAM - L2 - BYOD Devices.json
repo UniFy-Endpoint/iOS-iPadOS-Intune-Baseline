@@ -1,0 +1,333 @@
+{
+  "@odata.context": "https://graph.microsoft.com/beta/$metadata#deviceAppManagement/iosManagedAppProtections(assignments(),apps())/$entity",
+  "@odata.type": "#microsoft.graph.iosManagedAppProtection",
+  "@odata.id": "deviceAppManagement/iosManagedAppProtections('T_868dc356-64b6-44ed-8db6-10eb7c35e538')",
+  "@odata.editLink": "deviceAppManagement/iosManagedAppProtections('T_868dc356-64b6-44ed-8db6-10eb7c35e538')",
+  "displayName": "iOS_iPadOS - APP - USR - App Protection - MAM - L2 - BYOD Devices",
+  "description": "CIS iOS/iPadOS 26 Benchmark v1.0.0 Level 2 App Protection Policy (Enterprise Basic Data Protection) for Microsoft Company Apps on iOS/iPadOS Unsupervised (Personal / BYOD) Devices.",
+  "createdDateTime@odata.type": "#DateTimeOffset",
+  "createdDateTime": "2025-11-27T18:06:54.3985826Z",
+  "lastModifiedDateTime@odata.type": "#DateTimeOffset",
+  "lastModifiedDateTime": "2026-05-26T11:18:54Z",
+  "roleScopeTagIds@odata.type": "#Collection(String)",
+  "roleScopeTagIds": [
+    "0"
+  ],
+  "id": "T_868dc356-64b6-44ed-8db6-10eb7c35e538",
+  "version": "\"3c002742-0000-1600-0000-6a15819e0000\"",
+  "periodOfflineBeforeAccessCheck@odata.type": "#Duration",
+  "periodOfflineBeforeAccessCheck": "PT12H",
+  "periodOnlineBeforeAccessCheck@odata.type": "#Duration",
+  "periodOnlineBeforeAccessCheck": "PT30M",
+  "allowedInboundDataTransferSources@odata.type": "#microsoft.graph.managedAppDataTransferLevel",
+  "allowedInboundDataTransferSources": "allApps",
+  "allowedOutboundDataTransferDestinations@odata.type": "#microsoft.graph.managedAppDataTransferLevel",
+  "allowedOutboundDataTransferDestinations": "managedApps",
+  "organizationalCredentialsRequired": false,
+  "allowedOutboundClipboardSharingLevel@odata.type": "#microsoft.graph.managedAppClipboardSharingLevel",
+  "allowedOutboundClipboardSharingLevel": "managedAppsWithPasteIn",
+  "dataBackupBlocked": true,
+  "deviceComplianceRequired": true,
+  "managedBrowserToOpenLinksRequired": true,
+  "saveAsBlocked": true,
+  "periodOfflineBeforeWipeIsEnforced@odata.type": "#Duration",
+  "periodOfflineBeforeWipeIsEnforced": "P90D",
+  "pinRequired": true,
+  "maximumPinRetries": 5,
+  "simplePinBlocked": true,
+  "minimumPinLength": 6,
+  "pinCharacterSet@odata.type": "#microsoft.graph.managedAppPinCharacterSet",
+  "pinCharacterSet": "numeric",
+  "periodBeforePinReset@odata.type": "#Duration",
+  "periodBeforePinReset": "PT0S",
+  "allowedDataStorageLocations@odata.type": "#Collection(microsoft.graph.managedAppDataStorageLocation)",
+  "allowedDataStorageLocations": [
+    "localStorage",
+    "oneDriveForBusiness",
+    "sharePoint"
+  ],
+  "contactSyncBlocked": false,
+  "printBlocked": true,
+  "fingerprintBlocked": false,
+  "disableAppPinIfDevicePinIsSet": false,
+  "maximumRequiredOsVersion": null,
+  "maximumWarningOsVersion": null,
+  "maximumWipeOsVersion": null,
+  "minimumRequiredOsVersion": "18.7.8",
+  "minimumWarningOsVersion": null,
+  "minimumRequiredAppVersion": null,
+  "minimumWarningAppVersion": null,
+  "minimumWipeOsVersion": null,
+  "minimumWipeAppVersion": null,
+  "appActionIfDeviceComplianceRequired@odata.type": "#microsoft.graph.managedAppRemediationAction",
+  "appActionIfDeviceComplianceRequired": "block",
+  "appActionIfMaximumPinRetriesExceeded@odata.type": "#microsoft.graph.managedAppRemediationAction",
+  "appActionIfMaximumPinRetriesExceeded": "block",
+  "pinRequiredInsteadOfBiometricTimeout@odata.type": "#Duration",
+  "pinRequiredInsteadOfBiometricTimeout": "PT30M",
+  "allowedOutboundClipboardSharingExceptionLength": 0,
+  "notificationRestriction@odata.type": "#microsoft.graph.managedAppNotificationRestriction",
+  "notificationRestriction": "allow",
+  "previousPinBlockCount": 0,
+  "managedBrowser@odata.type": "#microsoft.graph.managedBrowserType",
+  "managedBrowser": "microsoftEdge",
+  "maximumAllowedDeviceThreatLevel@odata.type": "#microsoft.graph.managedAppDeviceThreatLevel",
+  "maximumAllowedDeviceThreatLevel": "notConfigured",
+  "mobileThreatDefenseRemediationAction@odata.type": "#microsoft.graph.managedAppRemediationAction",
+  "mobileThreatDefenseRemediationAction": "block",
+  "mobileThreatDefensePartnerPriority": null,
+  "blockDataIngestionIntoOrganizationDocuments": true,
+  "allowedDataIngestionLocations@odata.type": "#Collection(microsoft.graph.managedAppDataIngestionLocation)",
+  "allowedDataIngestionLocations": [
+    "oneDriveForBusiness",
+    "sharePoint",
+    "camera"
+  ],
+  "appActionIfUnableToAuthenticateUser": null,
+  "dialerRestrictionLevel@odata.type": "#microsoft.graph.managedAppPhoneNumberRedirectLevel",
+  "dialerRestrictionLevel": "allApps",
+  "gracePeriodToBlockAppsDuringOffClockHours": null,
+  "protectedMessagingRedirectAppType@odata.type": "#microsoft.graph.messagingRedirectAppType",
+  "protectedMessagingRedirectAppType": "anyApp",
+  "isAssigned": true,
+  "targetedAppManagementLevels@odata.type": "#microsoft.graph.appManagementLevel",
+  "targetedAppManagementLevels": "unspecified",
+  "appGroupType@odata.type": "#microsoft.graph.targetedManagedAppGroupType",
+  "appGroupType": "allCoreMicrosoftApps",
+  "genmojiConfigurationState@odata.type": "#microsoft.graph.genmojiIosManagedAppConfigurationState",
+  "genmojiConfigurationState": "blocked",
+  "screenCaptureConfigurationState@odata.type": "#microsoft.graph.screenCaptureIosManagedAppConfigurationState",
+  "screenCaptureConfigurationState": "blocked",
+  "writingToolsConfigurationState@odata.type": "#microsoft.graph.writingToolsIosManagedAppConfigurationState",
+  "writingToolsConfigurationState": "notBlocked",
+  "appDataEncryptionType@odata.type": "#microsoft.graph.managedAppDataEncryptionType",
+  "appDataEncryptionType": "whenDeviceLocked",
+  "minimumRequiredSdkVersion": null,
+  "deployedAppCount": 11,
+  "faceIdBlocked": false,
+  "allowWidgetContentSync": false,
+  "minimumWipeSdkVersion": null,
+  "allowedIosDeviceModels": null,
+  "appActionIfIosDeviceModelNotAllowed@odata.type": "#microsoft.graph.managedAppRemediationAction",
+  "appActionIfIosDeviceModelNotAllowed": "block",
+  "appActionIfAccountIsClockedOut": null,
+  "thirdPartyKeyboardsBlocked": false,
+  "filterOpenInToOnlyManagedApps": true,
+  "disableProtectionOfManagedOutboundOpenInData": false,
+  "protectInboundDataFromUnknownSources": false,
+  "customBrowserProtocol": "",
+  "customDialerAppProtocol": "",
+  "managedUniversalLinks@odata.type": "#Collection(String)",
+  "managedUniversalLinks": [
+    "http://*.appsplatform.us/*",
+    "http://*.onedrive.com/*",
+    "http://*.powerapps.cn/*",
+    "http://*.powerapps.com/*",
+    "http://*.powerapps.us/*",
+    "http://*.powerbi.com/*",
+    "http://*.service-now.com/*",
+    "http://*.sharepoint-df.com/*",
+    "http://*.sharepoint.com/*",
+    "http://*.yammer.com/*",
+    "http://*.zoom.us/*",
+    "http://*collab.apps.mil/l/*",
+    "http://*devspaces.skype.com/l/*",
+    "http://*teams-fl.microsoft.com/l/*",
+    "http://*teams.live.com/l/*",
+    "http://*teams.microsoft.com/l/*",
+    "http://*teams.microsoft.us/l/*",
+    "http://app.powerbi.cn/*",
+    "http://app.powerbi.de/*",
+    "http://app.powerbigov.us/*",
+    "http://msit.microsoftstream.com/video/*",
+    "http://tasks.office.com/*",
+    "http://to-do.microsoft.com/sharing*",
+    "http://web.microsoftstream.com/video/*",
+    "http://zoom.us/*",
+    "https://*.appsplatform.us/*",
+    "https://*.onedrive.com/*",
+    "https://*.powerapps.cn/*",
+    "https://*.powerapps.com/*",
+    "https://*.powerapps.us/*",
+    "https://*.powerbi.com/*",
+    "https://*.service-now.com/*",
+    "https://*.sharepoint-df.com/*",
+    "https://*.sharepoint.com/*",
+    "https://*.yammer.com/*",
+    "https://*.zoom.us/*",
+    "https://*collab.apps.mil/l/*",
+    "https://*devspaces.skype.com/l/*",
+    "https://*teams-fl.microsoft.com/l/*",
+    "https://*teams.live.com/l/*",
+    "https://*teams.microsoft.com/l/*",
+    "https://*teams.microsoft.us/l/*",
+    "https://app.powerbi.cn/*",
+    "https://app.powerbi.de/*",
+    "https://app.powerbigov.us/*",
+    "https://msit.microsoftstream.com/video/*",
+    "https://tasks.office.com/*",
+    "https://to-do.microsoft.com/sharing*",
+    "https://web.microsoftstream.com/video/*",
+    "https://zoom.us/*"
+  ],
+  "exemptedUniversalLinks@odata.type": "#Collection(String)",
+  "exemptedUniversalLinks": [
+    "http://facetime.apple.com",
+    "http://maps.apple.com",
+    "https://facetime.apple.com",
+    "https://maps.apple.com"
+  ],
+  "minimumWarningSdkVersion": null,
+  "messagingRedirectAppUrlScheme": "",
+  "exemptedAppProtocols@odata.type": "#Collection(microsoft.graph.keyValuePair)",
+  "exemptedAppProtocols": [],
+  "assignments@odata.context": "https://graph.microsoft.com/beta/$metadata#deviceAppManagement/iosManagedAppProtections('T_868dc356-64b6-44ed-8db6-10eb7c35e538')/assignments",
+  "assignments@odata.associationLink": "https://graph.microsoft.com/beta/deviceAppManagement/iosManagedAppProtections('T_868dc356-64b6-44ed-8db6-10eb7c35e538')/assignments/$ref",
+  "assignments@odata.navigationLink": "https://graph.microsoft.com/beta/deviceAppManagement/iosManagedAppProtections('T_868dc356-64b6-44ed-8db6-10eb7c35e538')/assignments",
+  "apps@odata.context": "https://graph.microsoft.com/beta/$metadata#deviceAppManagement/iosManagedAppProtections('T_868dc356-64b6-44ed-8db6-10eb7c35e538')/apps",
+  "apps@odata.associationLink": "https://graph.microsoft.com/beta/deviceAppManagement/iosManagedAppProtections('T_868dc356-64b6-44ed-8db6-10eb7c35e538')/apps/$ref",
+  "apps@odata.navigationLink": "https://graph.microsoft.com/beta/deviceAppManagement/iosManagedAppProtections('T_868dc356-64b6-44ed-8db6-10eb7c35e538')/apps",
+  "apps": [
+    {
+      "@odata.type": "#microsoft.graph.managedMobileApp",
+      "@odata.id": "deviceAppManagement/iosManagedAppProtections('T_868dc356-64b6-44ed-8db6-10eb7c35e538')/apps('com.microsoft.msedge.ios')",
+      "@odata.editLink": "deviceAppManagement/iosManagedAppProtections('T_868dc356-64b6-44ed-8db6-10eb7c35e538')/apps('com.microsoft.msedge.ios')",
+      "id": "com.microsoft.msedge.ios",
+      "version": "-2135752869",
+      "mobileAppIdentifier": {
+        "@odata.type": "#microsoft.graph.iosMobileAppIdentifier",
+        "bundleId": "com.microsoft.msedge"
+      }
+    },
+    {
+      "@odata.type": "#microsoft.graph.managedMobileApp",
+      "@odata.id": "deviceAppManagement/iosManagedAppProtections('T_868dc356-64b6-44ed-8db6-10eb7c35e538')/apps('com.microsoft.office.excel.ios')",
+      "@odata.editLink": "deviceAppManagement/iosManagedAppProtections('T_868dc356-64b6-44ed-8db6-10eb7c35e538')/apps('com.microsoft.office.excel.ios')",
+      "id": "com.microsoft.office.excel.ios",
+      "version": "-1255026913",
+      "mobileAppIdentifier": {
+        "@odata.type": "#microsoft.graph.iosMobileAppIdentifier",
+        "bundleId": "com.microsoft.office.excel"
+      }
+    },
+    {
+      "@odata.type": "#microsoft.graph.managedMobileApp",
+      "@odata.id": "deviceAppManagement/iosManagedAppProtections('T_868dc356-64b6-44ed-8db6-10eb7c35e538')/apps('com.microsoft.office.outlook.ios')",
+      "@odata.editLink": "deviceAppManagement/iosManagedAppProtections('T_868dc356-64b6-44ed-8db6-10eb7c35e538')/apps('com.microsoft.office.outlook.ios')",
+      "id": "com.microsoft.office.outlook.ios",
+      "version": "-518090279",
+      "mobileAppIdentifier": {
+        "@odata.type": "#microsoft.graph.iosMobileAppIdentifier",
+        "bundleId": "com.microsoft.office.outlook"
+      }
+    },
+    {
+      "@odata.type": "#microsoft.graph.managedMobileApp",
+      "@odata.id": "deviceAppManagement/iosManagedAppProtections('T_868dc356-64b6-44ed-8db6-10eb7c35e538')/apps('com.microsoft.office.powerpoint.ios')",
+      "@odata.editLink": "deviceAppManagement/iosManagedAppProtections('T_868dc356-64b6-44ed-8db6-10eb7c35e538')/apps('com.microsoft.office.powerpoint.ios')",
+      "id": "com.microsoft.office.powerpoint.ios",
+      "version": "-740777841",
+      "mobileAppIdentifier": {
+        "@odata.type": "#microsoft.graph.iosMobileAppIdentifier",
+        "bundleId": "com.microsoft.office.powerpoint"
+      }
+    },
+    {
+      "@odata.type": "#microsoft.graph.managedMobileApp",
+      "@odata.id": "deviceAppManagement/iosManagedAppProtections('T_868dc356-64b6-44ed-8db6-10eb7c35e538')/apps('com.microsoft.office.word.ios')",
+      "@odata.editLink": "deviceAppManagement/iosManagedAppProtections('T_868dc356-64b6-44ed-8db6-10eb7c35e538')/apps('com.microsoft.office.word.ios')",
+      "id": "com.microsoft.office.word.ios",
+      "version": "922692278",
+      "mobileAppIdentifier": {
+        "@odata.type": "#microsoft.graph.iosMobileAppIdentifier",
+        "bundleId": "com.microsoft.office.word"
+      }
+    },
+    {
+      "@odata.type": "#microsoft.graph.managedMobileApp",
+      "@odata.id": "deviceAppManagement/iosManagedAppProtections('T_868dc356-64b6-44ed-8db6-10eb7c35e538')/apps('com.microsoft.officemobile.ios')",
+      "@odata.editLink": "deviceAppManagement/iosManagedAppProtections('T_868dc356-64b6-44ed-8db6-10eb7c35e538')/apps('com.microsoft.officemobile.ios')",
+      "id": "com.microsoft.officemobile.ios",
+      "version": "-803819540",
+      "mobileAppIdentifier": {
+        "@odata.type": "#microsoft.graph.iosMobileAppIdentifier",
+        "bundleId": "com.microsoft.officemobile"
+      }
+    },
+    {
+      "@odata.type": "#microsoft.graph.managedMobileApp",
+      "@odata.id": "deviceAppManagement/iosManagedAppProtections('T_868dc356-64b6-44ed-8db6-10eb7c35e538')/apps('com.microsoft.onenote.ios')",
+      "@odata.editLink": "deviceAppManagement/iosManagedAppProtections('T_868dc356-64b6-44ed-8db6-10eb7c35e538')/apps('com.microsoft.onenote.ios')",
+      "id": "com.microsoft.onenote.ios",
+      "version": "107156768",
+      "mobileAppIdentifier": {
+        "@odata.type": "#microsoft.graph.iosMobileAppIdentifier",
+        "bundleId": "com.microsoft.onenote"
+      }
+    },
+    {
+      "@odata.type": "#microsoft.graph.managedMobileApp",
+      "@odata.id": "deviceAppManagement/iosManagedAppProtections('T_868dc356-64b6-44ed-8db6-10eb7c35e538')/apps('com.microsoft.sharepoint.ios')",
+      "@odata.editLink": "deviceAppManagement/iosManagedAppProtections('T_868dc356-64b6-44ed-8db6-10eb7c35e538')/apps('com.microsoft.sharepoint.ios')",
+      "id": "com.microsoft.sharepoint.ios",
+      "version": "-585639021",
+      "mobileAppIdentifier": {
+        "@odata.type": "#microsoft.graph.iosMobileAppIdentifier",
+        "bundleId": "com.microsoft.sharepoint"
+      }
+    },
+    {
+      "@odata.type": "#microsoft.graph.managedMobileApp",
+      "@odata.id": "deviceAppManagement/iosManagedAppProtections('T_868dc356-64b6-44ed-8db6-10eb7c35e538')/apps('com.microsoft.skydrive.ios')",
+      "@odata.editLink": "deviceAppManagement/iosManagedAppProtections('T_868dc356-64b6-44ed-8db6-10eb7c35e538')/apps('com.microsoft.skydrive.ios')",
+      "id": "com.microsoft.skydrive.ios",
+      "version": "-108719121",
+      "mobileAppIdentifier": {
+        "@odata.type": "#microsoft.graph.iosMobileAppIdentifier",
+        "bundleId": "com.microsoft.skydrive"
+      }
+    },
+    {
+      "@odata.type": "#microsoft.graph.managedMobileApp",
+      "@odata.id": "deviceAppManagement/iosManagedAppProtections('T_868dc356-64b6-44ed-8db6-10eb7c35e538')/apps('com.microsoft.skype.teams.ios')",
+      "@odata.editLink": "deviceAppManagement/iosManagedAppProtections('T_868dc356-64b6-44ed-8db6-10eb7c35e538')/apps('com.microsoft.skype.teams.ios')",
+      "id": "com.microsoft.skype.teams.ios",
+      "version": "-1040529574",
+      "mobileAppIdentifier": {
+        "@odata.type": "#microsoft.graph.iosMobileAppIdentifier",
+        "bundleId": "com.microsoft.skype.teams"
+      }
+    },
+    {
+      "@odata.type": "#microsoft.graph.managedMobileApp",
+      "@odata.id": "deviceAppManagement/iosManagedAppProtections('T_868dc356-64b6-44ed-8db6-10eb7c35e538')/apps('com.microsoft.to-do.ios')",
+      "@odata.editLink": "deviceAppManagement/iosManagedAppProtections('T_868dc356-64b6-44ed-8db6-10eb7c35e538')/apps('com.microsoft.to-do.ios')",
+      "id": "com.microsoft.to-do.ios",
+      "version": "-292160221",
+      "mobileAppIdentifier": {
+        "@odata.type": "#microsoft.graph.iosMobileAppIdentifier",
+        "bundleId": "com.microsoft.to-do"
+      }
+    }
+  ],
+  "deploymentSummary@odata.associationLink": "https://graph.microsoft.com/beta/deviceAppManagement/iosManagedAppProtections('T_868dc356-64b6-44ed-8db6-10eb7c35e538')/deploymentSummary/$ref",
+  "deploymentSummary@odata.navigationLink": "https://graph.microsoft.com/beta/deviceAppManagement/iosManagedAppProtections('T_868dc356-64b6-44ed-8db6-10eb7c35e538')/deploymentSummary",
+  "#microsoft.graph.assign": {
+    "title": "microsoft.graph.assign",
+    "target": "https://graph.microsoft.com/beta/deviceAppManagement/iosManagedAppProtections('T_868dc356-64b6-44ed-8db6-10eb7c35e538')/microsoft.graph.targetedManagedAppProtection/microsoft.graph.assign"
+  },
+  "#microsoft.graph.targetApps": [
+    {
+      "title": "microsoft.graph.targetApps",
+      "target": "https://graph.microsoft.com/beta/deviceAppManagement/iosManagedAppProtections('T_868dc356-64b6-44ed-8db6-10eb7c35e538')/microsoft.graph.targetedManagedAppProtection/microsoft.graph.targetApps"
+    },
+    {
+      "title": "microsoft.graph.targetApps",
+      "target": "https://graph.microsoft.com/beta/deviceAppManagement/iosManagedAppProtections('T_868dc356-64b6-44ed-8db6-10eb7c35e538')/microsoft.graph.managedAppPolicy/microsoft.graph.targetApps"
+    },
+    {
+      "title": "microsoft.graph.targetApps",
+      "target": "https://graph.microsoft.com/beta/deviceAppManagement/iosManagedAppProtections('T_868dc356-64b6-44ed-8db6-10eb7c35e538')/microsoft.graph.managedAppProtection/microsoft.graph.targetApps"
+    }
+  ]
+}
