@@ -11,7 +11,7 @@ A CIS-aligned Microsoft Intune baseline for iOS and iPadOS devices. Includes rea
 | **Author** | Sr. Modern Work Consultant |
 | **CIS Reference** | CIS Apple iOS/iPadOS 26 Benchmark v1.0.0 |
 | **Microsoft Reference** | iOS/iPadOS Security Configuration Framework (updated April 2026) |
-| **Last Updated** | May 23 2026 |
+| **Last Updated** | May 2026 |
 
 ---
 
