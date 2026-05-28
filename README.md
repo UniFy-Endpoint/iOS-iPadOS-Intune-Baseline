@@ -305,6 +305,14 @@ These are deliberate baseline choices, not gaps.
 
 ---
 
+## Version History
+
+| Version | Date | Summary |
+|---|---|---|
+| 1.0 | May 2026 | Initial release — CIS iOS/iPadOS 26 Benchmark v1.0.0 aligned baseline for Corporate (ADE) and BYOD devices |
+
+---
+
 ## CIS and Microsoft References
 
 | Source | Reference |
@@ -314,14 +322,6 @@ These are deliberate baseline choices, not gaps.
 | Microsoft iOS/iPadOS Security Configuration Framework | https://learn.microsoft.com/en-us/intune/device-security/security-configurations/ |
 | Microsoft iOS/iPadOS Deployment Guide | https://learn.microsoft.com/en-us/intune/enrollment/ios-ipados-deployment-guide |
 | Apple Declarative Device Management | https://support.apple.com/guide/deployment/declarative-device-management-manage-apple-depc30268577/web |
-
----
-
-## Version History
-
-| Version | Date | Summary |
-|---|---|---|
-| 1.0 | May 2026 | Initial release — CIS iOS/iPadOS 26 Benchmark v1.0.0 aligned baseline for Corporate (ADE) and BYOD devices |
 
 ---
 
