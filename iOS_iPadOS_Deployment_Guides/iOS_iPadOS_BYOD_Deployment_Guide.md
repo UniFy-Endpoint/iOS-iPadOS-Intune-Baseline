@@ -282,7 +282,11 @@ With groups and filters in place, assign each baseline policy to its target grou
 
 > The Microsoft Enterprise SSO policy is assigned to both BYOD and Corporate device groups. The Corporate track assignment is listed in [iOS_iPadOS_Corporate_Deployment_Guide.md](iOS_iPadOS_Corporate_Deployment_Guide.md) Section 6.3.
 
-> **Apple Intelligence — not assigned to BYOD devices:** Microsoft has migrated Apple Intelligence settings in Intune from Device Restrictions Configuration to Declarative Device Management (DDM). The new DDM-based settings work correctly on supervised Corporate devices but produce errors in Intune when assigned to unsupervised BYOD devices. The `iOS_iPadOS - SC - DEV - Apple Intelligence & Siri - BYOD Devices` policy has been removed from the baseline and is not assigned to any BYOD group. MAM App Protection Policies prevent corporate data from being processed by Apple AI within managed Microsoft 365 apps on BYOD devices — no device-level Apple Intelligence policy is required.
+> **Apple Intelligence — not assigned to BYOD devices (CIS Section 2.9.1–2.9.4 gap):** Microsoft has migrated Apple Intelligence settings in Intune from Device Restrictions Configuration to Declarative Device Management (DDM). The new DDM-based settings work correctly on supervised Corporate devices but produce errors in Intune when assigned to unsupervised BYOD devices. The `iOS_iPadOS - SC - DEV - Apple Intelligence & Siri - BYOD Devices` policy has been removed from the baseline and is not assigned to any BYOD group.
+>
+> **CIS compliance impact:** CIS iOS/iPadOS 26 Benchmark v1.0.0 includes four Level 1 BYOD controls (Section 2.9.1 External Intelligence, Section 2.9.2 Notes Summarization, Section 2.9.3 Mail Summarization, Section 2.9.4 Writing Tools) that cannot be enforced on unsupervised BYOD devices due to this DDM limitation. These are documented as a known gap in Section 3.1 (Deviations Registry) and Section 5.7 of the [iOS_CIS-Microsoft_Recommended_Settings_Guide.md](iOS_CIS-Microsoft_Recommended_Settings_Guide.md).
+>
+> **Compensating controls:** MAM App Protection Policies prevent corporate data from being processed by Apple AI within managed Microsoft 365 apps on BYOD devices. Monitor Microsoft Intune release notes for future support of DDM Apple Intelligence controls on unsupervised devices.
 
 #### Compliance Policies
 

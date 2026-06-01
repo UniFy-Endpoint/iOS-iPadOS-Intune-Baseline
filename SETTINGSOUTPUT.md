@@ -42,28 +42,50 @@ Last Updated: May 2026
 | Property | Value |
 |---|---|
 | Policy Type | Settings Catalog |
-| Target | Corporate Devices |
+| Target | Corporate Devices (ADE/Supervised only — DDM; do NOT assign to BYOD) |
 | Folder | SettingsCatalog\ |
-| Description | CIS iOS/iPadOS 26 Benchmark v1.0.0 Apple Intelligence and Siri controls for ADE/Corporate devices. |
+| Description | CIS iOS/iPadOS 26 Benchmark v1.0.0 Apple Intelligence and Siri controls for ADE/Corporate devices: External Intelligence Settings (ChatGPT/third-party AI integration), Intelligence Settings (on-device AI features including Apps sub-groups for Mail, Notes, Safari), Siri Settings. All settings delivered via Declarative Device Management (DDM) — incompatible with unsupervised BYOD devices. |
 
-**Settings**
+**Settings — External Intelligence Settings** (`externalintelligencesettings_externalintelligencesettings` group)
 
 | Setting | MDM Key | Value | Notes |
 |---|---|---|---|
-| Allow Sign In (External Intelligence) | externalintelligencesettings_allowsignin | false | Block user sign-in to external AI services (ChatGPT) |
-| Enabled (External Intelligence) | externalintelligencesettings_enabled | false | Disable ChatGPT and third-party AI integration |
-| Allow Apple Intelligence Report | intelligencesettings_allowappleintelligencereport | false | Block diagnostic telemetry reporting to Apple (L2) |
-| Allow Genmoji | intelligencesettings_allowgenmoji | false | Block Genmoji on corporate devices; AI-generated content not appropriate for corporate use |
-| Allow Image Playground | intelligencesettings_allowimageplayground | false | Block AI image generation on corporate devices (L2) |
-| Allow Image Wand | intelligencesettings_allowimagewand | false | Block AI image generation (Image Wand) on corporate devices (L2) |
-| Allow Personalized Handwriting Results | intelligencesettings_allowpersonalizedhandwritingresults | false | Block handwriting samples sent to Apple for model training (L2) |
-| Allow Visual Intelligence Summary | intelligencesettings_allowvisualintelligencesummary | false | Block camera-based AI analysis of surroundings (L1) |
-| Allow Writing Tools | intelligencesettings_allowwritingtools | true | Writing Tools (proofread, rewrite, summarize) is a productivity feature; CIS does not require blocking |
-| Force On Device Only Dictation | intelligencesettings_forceondeviceonlydictation | true | Force dictation processing to remain on-device (L1) |
-| Force On Device Only Translation | intelligencesettings_forceondeviceonlytranslation | true | Force translation processing to remain on-device (L1) |
-| Allow User Generated Content (Siri) | sirisettings_allowusergeneratedcontent | false | Block Siri user-generated content learning |
-| Allow While Locked (Siri) | sirisettings_allowwhilelocked | false | Block Siri while device is locked (CIS L1) |
-| Enabled (Siri) | sirisettings_enabled | false | Disable Siri entirely on corporate devices |
+| Allow Sign In (External Intelligence) | externalintelligencesettings_allowsignin | false | Block user sign-in to external AI services (ChatGPT) — CIS Section 3.10.1 L1 |
+| Allowed Workspace IDs | externalintelligencesettings_allowedworkspaceids | REPLACE | **REPLACE** with real Entra tenant GUID or approved workspace ID — OR remove if not restricting to specific approved AI workspaces. Note: `enabled=false` already blocks all External Intelligence regardless. |
+| Enabled (External Intelligence) | externalintelligencesettings_enabled | false | Disable ChatGPT and third-party AI integration — CIS Section 3.10.1 L1 |
+
+**Settings — Intelligence Settings** (`intelligencesettings_intelligencesettings` group)
+
+| Setting | MDM Key | Value | Notes |
+|---|---|---|---|
+| Allow Apple Intelligence Report | intelligencesettings_allowappleintelligencereport | false | Block diagnostic telemetry reporting to Apple — CIS L2 |
+| Allow Genmoji | intelligencesettings_allowgenmoji | false | Block Genmoji — Operational |
+| Allow Image Playground | intelligencesettings_allowimageplayground | false | Block AI image generation — CIS L2 |
+| Allow Image Wand | intelligencesettings_allowimagewand | false | Block Image Wand — CIS L2 |
+| Allow Personalized Handwriting Results | intelligencesettings_allowpersonalizedhandwritingresults | false | Block handwriting model training — CIS L2 |
+| Allow Visual Intelligence Summary | intelligencesettings_allowvisualintelligencesummary | false | Block camera-based AI analysis — CIS Section 3.10.1 L1 |
+| Allow Writing Tools | intelligencesettings_allowwritingtools | true | Intentional deviation from CIS Section 3.10.4 L1 — Writing Tools kept enabled for productivity; PCC on-device processing provides privacy safeguards. See Section 3.1 in iOS_CIS-Microsoft_Recommended_Settings_Guide.md. |
+| Force On Device Only Dictation | intelligencesettings_forceondeviceonlydictation | true | Force dictation on-device only — CIS Section 3.10.1 L1 |
+| Force On Device Only Translation | intelligencesettings_forceondeviceonlytranslation | true | Force translation on-device only — CIS Section 3.10.1 L1 |
+
+**Settings — Intelligence Settings Apps Sub-groups** (nested within `intelligencesettings_apps` group)
+
+| Setting | MDM Key | Value | Notes |
+|---|---|---|---|
+| Apps → Mail → Allow Smart Replies | intelligencesettings_apps_mail_allowsmartreplies | false | Block AI Smart Reply suggestions in Mail — Operational |
+| Apps → Mail → Allow Summary | intelligencesettings_apps_mail_allowsummary | false | Block AI-generated email summaries — **CIS Section 3.10.3 L1** |
+| Apps → Notes → Allow Transcription | intelligencesettings_apps_notes_allowtranscription | false | Block Notes audio transcription — **CIS Section 3.10.2 L1** |
+| Apps → Notes → Allow Transcription Summary | intelligencesettings_apps_notes_allowtranscriptionsummary | false | Block AI summary of Notes transcriptions — **CIS Section 3.10.2 L1** |
+| Apps → Safari → Allow Summary | intelligencesettings_apps_safari_allowsummary | false | Block Safari AI summaries via Intelligence Settings — Operational (defense-in-depth alongside `safari_allowsummary=false` in Safari Browser policy) |
+
+**Settings — Siri Settings** (`sirisettings_sirisettings` group)
+
+| Setting | MDM Key | Value | Notes |
+|---|---|---|---|
+| Allow User Generated Content (Siri) | sirisettings_allowusergeneratedcontent | false | Block Siri user-generated content learning — Operational (Siri fully disabled; no additional effect) |
+| Allow While Locked (Siri) | sirisettings_allowwhilelocked | false | Block Siri while locked — CIS Section 3.2.1.2 L1 |
+| Enabled (Siri) | sirisettings_enabled | false | Disable Siri entirely — Operational (CIS only requires blocking while locked; full disable is hardening choice) |
+| Force Profanity Filter (Siri) | sirisettings_forceprofanityfilter | true | Force Siri profanity filter — Operational (Siri disabled; no functional effect; defense-in-depth) |
 
 ---
 
@@ -1219,15 +1241,30 @@ Note: These CA polices work together — enrolled devices go through (device com
 
 ---
 
+## CIS Compliance Gaps — Apple Intelligence BYOD (DDM Incompatibility)
+
+The following CIS iOS/iPadOS 26 Benchmark Level 1 controls apply to **End-User Owned (BYOD) devices** per the benchmark but **cannot be implemented** in this baseline. Microsoft migrated all Apple Intelligence settings in the Intune Settings Catalog from Device Restrictions Configuration to Declarative Device Management (DDM). The DDM-based settings apply correctly on supervised ADE/Corporate devices but produce errors in Intune when assigned to unsupervised BYOD devices.
+
+| CIS Control | Section Reference | CIS Level | Reason Not Implemented | Compensating Control |
+|---|---|---|---|---|
+| External Intelligence Extensions Disabled | Section 2.9.1 | L1 BYOD | DDM incompatible with unsupervised BYOD — Intune error on assignment | MAM App Protection Policy prevents corporate data from entering external AI within managed Microsoft 365 apps |
+| Notes Summarization Disabled | Section 2.9.2 | L1 BYOD | DDM incompatible with unsupervised BYOD | No device-level compensating control; personal Notes app is outside MDM scope on personal device |
+| Mail Summarization Disabled | Section 2.9.3 | L1 BYOD | DDM incompatible with unsupervised BYOD | Outlook ACP and MAM policies control corporate mail on BYOD; native Mail app is outside managed scope |
+| Writing Tools Disabled | Section 2.9.4 | L1 BYOD | DDM incompatible with unsupervised BYOD (also intentional deviation on Corporate — Writing Tools kept enabled) | MAM App Protection Policy controls data processed by Writing Tools within managed apps |
+
+> **Recommended action:** Monitor Microsoft Intune release notes for support of DDM Apple Intelligence settings on unsupervised devices. If a supported path becomes available, add these controls to a BYOD Apple Intelligence policy. See also Section 5.7 of iOS_CIS-Microsoft_Recommended_Settings_Guide.md.
+
+---
+
 ## Baseline Compliance Assessment
 
 ### CIS iOS/iPadOS 26 Benchmark v1.0.0
 
 | Level | Estimated Coverage | Notes |
 |---|---|---|
-| L1 (Corporate) | ~96% | Remaining gaps are settings confirmed not present in this tenant's catalog (confirmed during policy import testing); all actionable L1 controls implemented |
-| L1 (BYOD) | ~91% | BYOD track excludes supervised-only controls by design; all applicable BYOD L1 controls are implemented |
-| L2 (Corporate) | ~93% | L2 additions fully implemented via additive-only model; gaps limited to tenant catalog constraints |
+| L1 (Corporate) | ~96% | Notes/Mail Summarization (Section 3.10.2–3.10.3) pending JSON update (Track A); Writing Tools (Section 3.10.4) is intentional deviation; all other L1 controls implemented |
+| L1 (BYOD) | ~88% | BYOD Apple Intelligence gap (Section 2.9.1–2.9.4) — DDM incompatible with unsupervised BYOD; all other applicable BYOD L1 controls implemented |
+| L2 (Corporate) | ~93% | L2 additions fully implemented; gaps limited to tenant catalog constraints |
 | L3 (Corporate) | ~89% | L3 controls implemented; gaps limited to tenant catalog constraints |
 
 **Controls confirmed implemented in this session:**

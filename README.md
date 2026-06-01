@@ -11,7 +11,7 @@ A CIS-aligned Microsoft Intune baseline for iOS and iPadOS devices. Includes rea
 | **Author** | Sr. Modern Work Consultant |
 | **CIS Reference** | CIS Apple iOS/iPadOS 26 Benchmark v1.0.0 |
 | **Microsoft Reference** | iOS/iPadOS Security Configuration Framework (updated April 2026) |
-| **Last Updated** | May 2026 |
+| **Last Updated** | June 2026 |
 
 ---
 
@@ -57,7 +57,7 @@ iOS_iPadOS-Baseline/
 ├── iOS_iPadOS_Deployment_Guides/        ← Configuration reference guides
 │   ├── iOS_iPadOS_Corporate_Deployment_Guide.md
 │   ├── iOS_iPadOS_BYOD_Deployment_Guide.md
-│   ├── iOS_CIS_Recommended_Settings_Guide.md
+│   ├── iOS_CIS-Microsoft_Recommended_Settings_Guide.md
 │   ├── iOS_App_Protection_Policy_Guide.md
 │   ├── iOS_App_Configuration_Policy_Guide.md
 │   ├── Defender_for_Endpoint_iOS_iPadOS_Devices.md
@@ -301,7 +301,7 @@ These are deliberate baseline choices, not gaps.
 |---|---|
 | **AirDrop not blocked at device level** | App Protection Policies prevent corporate data from leaving via AirDrop from managed apps. A device-level block is a primary BYOD unenrollment driver. |
 | **iCloud Keychain not blocked on BYOD** | App Protection Policies already prevent corporate credentials from syncing to personal iCloud. Blocking Keychain on a personal device restricts personal use without meaningful corporate security gain. |
-| **No Apple Intelligence policy for BYOD devices** | Microsoft has migrated Apple Intelligence settings from Device Restrictions Configuration to Declarative Device Management (DDM) in Intune. The new DDM-based settings apply correctly to supervised Corporate devices but produce errors when assigned to unsupervised BYOD devices. The Apple Intelligence BYOD policy has been removed from the baseline as a result. MAM App Protection Policies prevent corporate data from being processed by Apple AI within managed apps — no device-level AI control is required for BYOD. |
+| **No Apple Intelligence policy for BYOD devices (CIS Section 2.9.1–2.9.4 gap)** | Microsoft has migrated Apple Intelligence settings from Device Restrictions Configuration to Declarative Device Management (DDM) in Intune. The new DDM-based settings apply correctly to supervised Corporate devices but produce errors when assigned to unsupervised BYOD devices. The Apple Intelligence BYOD policy has been removed from the baseline. CIS iOS 26 Section 2.9.1–2.9.4 are L1 BYOD requirements that cannot be implemented due to this DDM limitation — documented as a known gap. MAM App Protection Policies prevent corporate data from being processed by Apple AI within managed apps. Monitor Intune release notes for future unsupervised device DDM support. |
 
 ---
 
