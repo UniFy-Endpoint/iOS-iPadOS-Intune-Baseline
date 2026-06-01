@@ -128,7 +128,7 @@ iOS_iPadOS-Baseline/
 |---|---|---|
 | 1 | [Corporate Deployment Guide](iOS_iPadOS_Deployment_Guides/iOS_iPadOS_Corporate_Deployment_Guide.md) | ADE/supervised enrollment — ABM, ADE token, VPP, Setup Assistant, Managed Apple ID integration |
 | 2 | [BYOD Deployment Guide](iOS_iPadOS_Deployment_Guides/iOS_iPadOS_BYOD_Deployment_Guide.md) | Personal device enrollment — all four BYOD options, groups, App Management |
-| 3 | [CIS Recommended Settings Guide](iOS_iPadOS_Deployment_Guides/iOS_CIS_Recommended_Settings_Guide.md) | All Settings Catalog, compliance, and software update settings with CIS L1/L2 mapping |
+| 3 | [CIS Recommended Settings Guide](iOS_iPadOS_Deployment_Guides/iOS_CIS-Microsoft_Recommended_Settings_Guide.md) | All Settings Catalog, compliance, and software update settings with CIS L1/L2 mapping |
 | 4 | [App Protection Policy Guide](iOS_iPadOS_Deployment_Guides/iOS_App_Protection_Policy_Guide.md) | App Protection Policy (MAM) settings for BYOD apps |
 | 5 | [App Configuration Policy Guide](iOS_iPadOS_Deployment_Guides/iOS_App_Configuration_Policy_Guide.md) | App Configuration Policy (ACP) settings for Microsoft apps on iOS |
 | 6 | [Defender for Endpoint Guide](iOS_iPadOS_Deployment_Guides/Defender_for_Endpoint_iOS_iPadOS_Devices.md) | Microsoft Defender for Endpoint deployment and configuration |
@@ -224,37 +224,28 @@ The application exclusions (`0000000a-0000-0000-c000-000000000000` = Microsoft I
 | **Phase 2** | Expand to a subset of production devices |
 | **Phase 3** | Full production rollout including L2 policies |
 
-See [iOS_CIS_Recommended_Settings_Guide.md](iOS_iPadOS_Deployment_Guides/iOS_CIS_Recommended_Settings_Guide.md) Section 12 for the full phased rollout checklist.
+See [iOS_CIS-Microsoft_Recommended_Settings_Guide.md](iOS_iPadOS_Deployment_Guides/iOS_CIS-Microsoft_Recommended_Settings_Guide.md) Section 12 for the full phased rollout checklist.
 
 ---
 
 ## Compliance Coverage
 
-Estimated coverage against CIS iOS/iPadOS 26 Benchmark v1.0.0 and the Microsoft iOS/iPadOS Security Configuration Framework (April 2026). Last updated May 2026 (Phase 8). Remaining gaps are settings not present in this tenant's Intune Settings Catalog — unrecognized IDs are silently ignored on import, not policy errors.
+Estimated coverage against CIS iOS/iPadOS 26 Benchmark v1.0.0 and the Microsoft iOS/iPadOS Security Configuration Framework (April 2026). Remaining gaps are settings not present in this tenant's Intune Settings Catalog — unrecognized IDs are silently ignored on import, not policy errors.
 
-**CIS iOS/iPadOS 26 Benchmark v1.0.0**
+| Framework | Track | Coverage | Notes |
+|---|---|---|---|
+| **CIS L1** | Corporate (ADE / Supervised) | ~96% | All actionable L1 controls implemented; gaps limited to tenant catalog constraints |
+| **CIS L1** | BYOD (Personal / Unsupervised) | ~91% | Supervised-only controls excluded by design; Apple Intelligence gap (DDM incompatible with unsupervised devices — see below) |
+| **CIS L2** | Corporate | ~93% | Additive L2 controls fully implemented; gaps limited to tenant catalog |
+| **CIS L3** | Corporate | ~89% | Gaps limited to tenant catalog constraints |
+| **MS Level 1** | Corporate (Basic) | ~97% | Core passcode, data protection, and connectivity controls implemented |
+| **MS Level 2** | Corporate (Enhanced) | ~93% | Advanced supervised controls, SSO, MDE, and App Protection implemented |
+| **MS Level 3** | Corporate (High Security) | ~88% | Some settings not available in tenant catalog |
+| **MS Level 1** | BYOD | ~91% | Supervised-only controls excluded by design |
 
-| Tier | Estimated Coverage | Notes |
-|---|---|---|
-| L1 — Corporate (Supervised / ADE) | ~96% | All actionable L1 controls implemented; remaining gap is settings not in this tenant's catalog |
-| L1 — BYOD (Personal / Unsupervised) | ~91% | All applicable BYOD L1 controls implemented; supervised-only controls excluded by design |
-| L2 — Corporate | ~93% | L2 additive controls fully implemented; gaps limited to tenant catalog constraints |
-| L3 — Corporate | ~89% | L3 controls implemented; gaps limited to tenant catalog constraints |
+**Apple Intelligence gap (BYOD):** CIS Sections 2.9.1–2.9.4 are L1 BYOD requirements. Microsoft migrated Apple Intelligence settings to Declarative Device Management (DDM) in Intune — DDM is incompatible with unsupervised BYOD devices. These 4 controls cannot be enforced on BYOD. MAM App Protection Policies prevent corporate data from being processed by Apple AI in managed apps.
 
-**Microsoft iOS/iPadOS Security Configuration Framework (April 2026)**
-
-| Level | Estimated Coverage | Notes |
-|---|---|---|
-| Level 1 — Basic (Corporate) | ~97% | All core passcode, data protection, and connectivity controls implemented |
-| Level 2 — Enhanced (Corporate) | ~93% | Advanced supervised controls, SSO, MDE, and App Protection implemented |
-| Level 3 — High Security (Corporate) | ~88% | High-security supervised controls implemented; some settings not available in tenant catalog |
-| BYOD (User Enrollment) | ~91% | Full BYOD track implemented; supervised-only controls excluded by design |
-
-**App Protection Policy (MAM — BYOD):** Aligns with Microsoft Level 2 app protection recommendations with three intentional deviations:
-
-- **Inbound data allowed from all apps** — Restricting inbound sources blocks the camera, contacts, and file sharing into managed apps, which is too disruptive for BYOD.
-- **Writing Tools not blocked at the MAM layer** — Device-level Apple Intelligence controls on corporate devices already cover this. Restricting AI on a personal device goes beyond the appropriate scope of BYOD management.
-- **Org data notifications allowed** — Blocking notifications on personal devices is too disruptive to personal use. Users are informed via onboarding not to send sensitive data in notification-visible fields.
+**App Protection Policy (MAM — BYOD):** Aligns with Microsoft Level 2 with three intentional deviations — inbound data from all apps allowed (restricting blocks camera, contacts, and file sharing into managed apps), Writing Tools not blocked at the MAM layer (device-level controls cover corporate devices; restricting AI on a personal device exceeds appropriate BYOD scope), and org data notifications allowed (blocking notifications on personal devices is too disruptive; users are informed at onboarding).
 
 ---
 
@@ -309,6 +300,7 @@ These are deliberate baseline choices, not gaps.
 
 | Version | Date | Summary |
 |---|---|---|
+| 1.1 | June 2026 | Apple Intelligence & Siri settings updated (sirisettings_forceprofanityfilter, externalintelligencesettings_allowedworkspaceids added); Apple Intelligence BYOD policy removed (DDM incompatible with unsupervised devices); iOS_CIS-Microsoft_Recommended_Settings_Guide.md v1.2 — Section 3 deduplication and CIS level corrections (allowscreenshot, safari_acceptcookies confirmed L2) |
 | 1.0 | May 2026 | Initial release — CIS iOS/iPadOS 26 Benchmark v1.0.0 aligned baseline for Corporate (ADE) and BYOD devices |
 
 ---
