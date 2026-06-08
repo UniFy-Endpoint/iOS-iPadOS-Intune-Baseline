@@ -39,6 +39,7 @@
    - [5.5 Automate with Wrangler CLI](#55-automate-with-wrangler-cli)
    - [5.6 Automate with PowerShell and the Cloudflare API](#56-automate-with-powershell-and-the-cloudflare-api)
    - [5.7 Verify Deployment](#57-verify-deployment)
+   - [5.8 (Optional) Connect to GitHub for Source Control and Auto-Deployment](#58-optional--connect-to-github-for-source-control-and-auto-deployment)
 6. [Validate the File](#6-validate-the-file)
 7. [Troubleshooting](#7-troubleshooting)
 
@@ -887,6 +888,18 @@ Write-Host ""
 Write-Host "Run the validation commands in Section 6 of this guide to confirm the deployment."
 ```
 
+> **What the script creates — and what it does not do automatically:**
+>
+> The script creates a local project folder (named after your Worker) containing two files: `wrangler.toml` (Worker configuration) and `src/worker.js` (the Worker code). These local files are used by `wrangler deploy` to upload the Worker to Cloudflare.
+>
+> After deployment completes, the local files and the live Worker on Cloudflare are **not linked**. Cloudflare hosts and runs the Worker independently — changes to the local files do not automatically appear in Cloudflare, and the Worker does not read from your local machine after the initial deploy.
+>
+> To update the Worker in the future (for example, to change the Tenant ID), you must either:
+> - Edit the local files and run `wrangler deploy` again from the project folder, **or**
+> - Connect the project to a GitHub repository and push the change — Cloudflare then redeploys automatically (see [Section 5.8](#58-optional--connect-to-github-for-source-control-and-auto-deployment))
+>
+> If you delete or move the local project folder, the Worker continues running on Cloudflare without interruption. You would lose the ability to redeploy changes from the command line unless you still have the files elsewhere (such as in a GitHub repository).
+
 ---
 
 ### 5.6 Automate with PowerShell and the Cloudflare API
@@ -969,6 +982,137 @@ Write-Host "Run the validation commands in Section 6 of this guide to confirm th
 ### 5.7 Verify Deployment
 
 Proceed to [Section 6 — Validate the File](#6-validate-the-file) once the Worker is deployed and the route shows as active in the Cloudflare dashboard.
+
+---
+
+### 5.8 (Optional) — Connect to GitHub for Source Control and Auto-Deployment
+
+This section is optional. If you deployed your Worker using Section 5.5 (Wrangler CLI), your Worker is already live and running on Cloudflare — no further action is required to keep it operational.
+
+Connecting to GitHub provides two additional benefits:
+
+- **Source control:** Your Worker code and configuration are stored in a private repository, giving you a full change history and a recoverable copy independent of your local machine.
+- **Auto-deployment:** When you push a change to the repository (for example, updating the Tenant ID), Cloudflare automatically redeploys the Worker. You do not need to run `wrangler deploy` manually again.
+
+> **Important — deployment source:** Once you connect a GitHub repository to a Worker, Cloudflare uses GitHub as the deployment source going forward. Manual `wrangler deploy` commands from your local machine will still work, but the GitHub connection is the primary pipeline. Use one consistently to avoid confusion.
+
+---
+
+#### How the deployed Worker relates to your local files and GitHub
+
+Once deployed, the Worker runs entirely on Cloudflare's edge network. It does not depend on your local project folder or GitHub to remain operational. The relationship between the three is:
+
+| | Worker stays running | Can redeploy changes |
+|---|---|---|
+| Local files deleted or moved | Yes | No — unless GitHub has a copy |
+| GitHub repository deleted | Yes | No — unless you have local files or re-create the repo |
+| Both local files and GitHub deleted | Yes | No — code must be re-written from scratch |
+
+This is why connecting to GitHub is recommended: it ensures you always have a recoverable, version-controlled copy of the Worker code separate from your local machine.
+
+---
+
+#### Prerequisites
+
+| Tool | Purpose | Install Command (Windows) |
+|---|---|---|
+| Git | Initialize and manage the local repository | `winget install Git.Git` |
+| GitHub CLI | Create the GitHub repository from the command line | `winget install GitHub.cli` |
+
+After installing, authenticate GitHub CLI:
+
+```powershell
+gh auth login
+```
+
+---
+
+#### Step 1 — Prepare the project for Git
+
+If you used the automated script in Section 5.5, your project folder already contains `wrangler.toml` and `src/worker.js`. Navigate to that folder and create a `.gitignore` file to exclude local cache and secret files from being committed:
+
+```powershell
+Set-Location "apple-mdm-discovery"
+
+Set-Content -Path ".gitignore" -Encoding utf8NoBOM -Value @'
+.wrangler/
+node_modules/
+.env
+'@
+```
+
+> **Note:** The `.wrangler/` directory is created locally by Wrangler during deployment and contains cached account credentials. It must not be committed to GitHub.
+
+---
+
+#### Step 2 — Initialize the repository and create the initial commit
+
+```powershell
+git init
+git add .
+git commit -m "Add Apple MDM service discovery Worker"
+git branch -M main
+```
+
+> **Email privacy note:** If your GitHub account has email privacy protection enabled, Git commits that contain your real email address will be rejected on push. GitHub provides a no-reply address for this purpose in the format `ID+username@users.noreply.github.com`. You can find your specific address at **github.com → Settings → Emails → Keep my email addresses private**. Configure it before pushing:
+>
+> ```powershell
+> git config user.email "YOUR_ID+YOUR_USERNAME@users.noreply.github.com"
+> git config user.name "your-github-username"
+> git commit --amend --reset-author --no-edit
+> ```
+
+---
+
+#### Step 3 — Create a private GitHub repository and push
+
+The following command creates a private repository under your GitHub account or organization, sets it as the remote, and pushes the `main` branch in one step:
+
+```powershell
+gh repo create apple-mdm-discovery --private --source . --remote origin --push
+```
+
+Replace `apple-mdm-discovery` with a repository name that suits your organization's naming convention. The repository can be named anything — it does not affect how Cloudflare or Apple resolve the service discovery URL.
+
+After the push completes, your Worker code is stored at `https://github.com/your-org/apple-mdm-discovery` (private — not publicly accessible).
+
+---
+
+#### Step 4 — Connect the Worker to GitHub in the Cloudflare dashboard
+
+This step links Cloudflare directly to the GitHub repository. From this point on, every push to the `main` branch triggers an automatic redeployment of the Worker.
+
+1. In the Cloudflare dashboard, go to **Workers & Pages** and select your Worker (`apple-mdm-discovery`)
+2. Select the **Settings** tab and scroll to the **Build** section
+3. Under **Git repository**, select **GitHub**
+4. GitHub opens an authorization page — **Install & Authorize Cloudflare Workers and Pages**:
+   - Select **Only select repositories**
+   - Use the **Select repositories** dropdown to choose your repository (`apple-mdm-discovery`)
+   - Select **Install & Authorize**
+5. Cloudflare redirects back to the dashboard and prompts for build configuration:
+   - **Branch:** `main`
+   - **Build command:** leave blank — no build step is required for plain JavaScript Workers
+   - **Deploy command:** leave blank — Cloudflare handles deployment automatically
+6. Save the configuration
+
+Cloudflare performs an initial deployment from the connected repository to confirm the connection is working.
+
+---
+
+#### Making changes after connecting to GitHub
+
+To update the Worker after the GitHub connection is established — for example, to change the Tenant ID:
+
+1. Open `src/worker.js` in your editor and update the Tenant ID on the `BaseURL` line
+2. Commit and push the change:
+
+```powershell
+git add src/worker.js
+git commit -m "Update Entra Tenant ID"
+git push
+```
+
+Cloudflare detects the push and redeploys the Worker automatically. The updated response is live within approximately 1 minute. No manual `wrangler deploy` command is needed.
 
 ---
 
