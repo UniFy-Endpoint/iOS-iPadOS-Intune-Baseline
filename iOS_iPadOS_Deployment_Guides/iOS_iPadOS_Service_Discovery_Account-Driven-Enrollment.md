@@ -4,9 +4,9 @@
 | | |
 |---|---|
 | **Document Type** | Supplementary Configuration Guide |
-| **Version** | 2.0 |
+| **Version** | 2.1 |
 | **Author** | Sr. Modern Work Consultant |
-| **Last Updated** | May 2026 |
+| **Last Updated** | June 2026 |
 | **Applies To** | Account-Driven User Enrollment (Option B), iOS/iPadOS 15.0+, Microsoft Intune |
 
 ---
@@ -40,6 +40,7 @@
    - [5.6 Automate with PowerShell and the Cloudflare API](#56-automate-with-powershell-and-the-cloudflare-api)
    - [5.7 Verify Deployment](#57-verify-deployment)
    - [5.8 (Optional) Connect to GitHub for Source Control and Auto-Deployment](#58-optional--connect-to-github-for-source-control-and-auto-deployment)
+   - [5.9 (Optional) Cloudflare Security Hardening](#59-optional--cloudflare-security-hardening)
 6. [Validate the File](#6-validate-the-file)
 7. [Troubleshooting](#7-troubleshooting)
 
@@ -764,26 +765,63 @@ In the Cloudflare dashboard, the domain status changes from **Pending** to **Act
 6. Select all existing code in the editor and replace it with the following:
 
 ```javascript
+const SECURITY_HEADERS = {
+  'Strict-Transport-Security': 'max-age=31536000; includeSubDomains',
+  'X-Content-Type-Options': 'nosniff',
+  'X-Frame-Options': 'DENY',
+  'Referrer-Policy': 'no-referrer',
+  'Permissions-Policy': 'geolocation=(), camera=(), microphone=()',
+  'Cache-Control': 'no-store',
+  'Content-Security-Policy': "default-src 'none'",
+};
+
 export default {
   async fetch(request) {
+    if (request.method !== 'GET') {
+      return new Response('Method Not Allowed', {
+        status: 405,
+        headers: { Allow: 'GET', ...SECURITY_HEADERS },
+      });
+    }
+
     const url = new URL(request.url);
 
-    if (url.pathname === '/.well-known/com.apple.remotemanagement') {
-      const body = '{"Servers":[{"Version":"mdm-byod","BaseURL":"https://manage.microsoft.com/EnrollmentServer/PostReportDeviceInfoForUEV2?aadTenantId=REPLACE:YOUR_ENTRA_TENANT_ID"}]}';
-
-      return new Response(body, {
+    if (url.pathname === '/robots.txt') {
+      return new Response('User-agent: *\nDisallow: /\n', {
         headers: {
-          'Content-Type': 'application/json',
+          'Content-Type': 'text/plain; charset=utf-8',
+          ...SECURITY_HEADERS,
         },
       });
     }
 
-    return new Response('Not found', { status: 404 });
+    if (url.pathname === '/.well-known/com.apple.remotemanagement') {
+      const body = JSON.stringify({
+        Servers: [{
+          Version: 'mdm-byod',
+          BaseURL: 'https://manage.microsoft.com/EnrollmentServer/PostReportDeviceInfoForUEV2?aadTenantId=REPLACE:YOUR_ENTRA_TENANT_ID'
+        }]
+      });
+
+      return new Response(body, {
+        headers: {
+          'Content-Type': 'application/json',
+          ...SECURITY_HEADERS,
+        },
+      });
+    }
+
+    return new Response('Not found', {
+      status: 404,
+      headers: SECURITY_HEADERS,
+    });
   },
 };
 ```
 
 Replace `REPLACE:YOUR_ENTRA_TENANT_ID` with your actual Entra Directory (Tenant) ID.
+
+> **Security headers:** `SECURITY_HEADERS` is applied to every response — including 404 and 405 — so security headers are never omitted regardless of which path is requested. `Content-Security-Policy: default-src 'none'` is safe here because the Worker serves only JSON and plain text; no scripts, images, or stylesheets are loaded. The `robots.txt` endpoint instructs all crawlers not to index the domain.
 
 **For US Government environments (GCC High / DoD):** replace `manage.microsoft.com` with `manage.microsoft.us` in the URL.
 
@@ -854,9 +892,35 @@ Set-Content -Path "$ProjectDir\wrangler.toml" -Value $WranglerToml -Encoding utf
 
 # --- Step 3: Create the Worker script ---
 $WorkerJs = @"
+const SECURITY_HEADERS = {
+  'Strict-Transport-Security': 'max-age=31536000; includeSubDomains',
+  'X-Content-Type-Options': 'nosniff',
+  'X-Frame-Options': 'DENY',
+  'Referrer-Policy': 'no-referrer',
+  'Permissions-Policy': 'geolocation=(), camera=(), microphone=()',
+  'Cache-Control': 'no-store',
+  'Content-Security-Policy': "default-src 'none'",
+};
+
 export default {
   async fetch(request) {
+    if (request.method !== 'GET') {
+      return new Response('Method Not Allowed', {
+        status: 405,
+        headers: { Allow: 'GET', ...SECURITY_HEADERS },
+      });
+    }
+
     const url = new URL(request.url);
+
+    if (url.pathname === '/robots.txt') {
+      return new Response('User-agent: *\nDisallow: /\n', {
+        headers: {
+          'Content-Type': 'text/plain; charset=utf-8',
+          ...SECURITY_HEADERS,
+        },
+      });
+    }
 
     if (url.pathname === '/.well-known/com.apple.remotemanagement') {
       const body = JSON.stringify({
@@ -867,11 +931,17 @@ export default {
       });
 
       return new Response(body, {
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+          'Content-Type': 'application/json',
+          ...SECURITY_HEADERS,
+        },
       });
     }
 
-    return new Response('Not found', { status: 404 });
+    return new Response('Not found', {
+      status: 404,
+      headers: SECURITY_HEADERS,
+    });
   },
 };
 "@
@@ -929,16 +999,43 @@ $AuthHeaders = @{
     "Authorization" = "Bearer $ApiToken"
 }
 
-# Worker JavaScript — returns the JSON response with the correct Content-Type header
+# Worker JavaScript — returns the JSON response with security headers
 $WorkerScript = @"
+const SECURITY_HEADERS = {
+  'Strict-Transport-Security': 'max-age=31536000; includeSubDomains',
+  'X-Content-Type-Options': 'nosniff',
+  'X-Frame-Options': 'DENY',
+  'Referrer-Policy': 'no-referrer',
+  'Permissions-Policy': 'geolocation=(), camera=(), microphone=()',
+  'Cache-Control': 'no-store',
+  'Content-Security-Policy': "default-src 'none'",
+};
+
 export default {
   async fetch(request) {
+    if (request.method !== 'GET') {
+      return new Response('Method Not Allowed', {
+        status: 405,
+        headers: { Allow: 'GET', ...SECURITY_HEADERS },
+      });
+    }
+
     const url = new URL(request.url);
+
+    if (url.pathname === '/robots.txt') {
+      return new Response('User-agent: *\nDisallow: /\n', {
+        headers: { 'Content-Type': 'text/plain; charset=utf-8', ...SECURITY_HEADERS },
+      });
+    }
+
     if (url.pathname === '/.well-known/com.apple.remotemanagement') {
       const body = '{"Servers":[{"Version":"mdm-byod","BaseURL":"https://manage.microsoft.com/EnrollmentServer/PostReportDeviceInfoForUEV2?aadTenantId=$TenantId"}]}';
-      return new Response(body, { headers: { 'Content-Type': 'application/json' } });
+      return new Response(body, {
+        headers: { 'Content-Type': 'application/json', ...SECURITY_HEADERS },
+      });
     }
-    return new Response('Not found', { status: 404 });
+
+    return new Response('Not found', { status: 404, headers: SECURITY_HEADERS });
   }
 };
 "@
@@ -1125,6 +1222,85 @@ Cloudflare detects the push and redeploys the Worker automatically. The updated 
 
 ---
 
+### 5.9 (Optional) — Cloudflare Security Hardening
+
+The Worker handles service discovery requests, but the Cloudflare zone itself can be hardened to protect the domain against bots, protocol downgrade attacks, and DNS spoofing. All settings below are available on the free plan.
+
+#### Recommended zone settings
+
+| Setting | Dashboard location | Recommended value |
+|---|---|---|
+| Always Use HTTPS | SSL/TLS → Edge Certificates | On |
+| Minimum TLS Version | SSL/TLS → Edge Certificates | TLS 1.2 |
+| TLS 1.3 | SSL/TLS → Edge Certificates | Enabled |
+| HSTS | SSL/TLS → Edge Certificates → Configure HSTS | max-age=31536000; includeSubDomains |
+| DNSSEC | DNS → Settings | Enable |
+| Security Level | Security → Settings | High |
+| Bot Fight Mode | Security → Bots | On |
+
+> **HSTS caution:** Once HSTS is enabled with `includeSubDomains`, browsers that received the header will refuse HTTP connections to any subdomain for the duration of `max-age` (31536000 seconds = 12 months). Only enable this after confirming all subdomains on the domain serve HTTPS correctly. The setting is not a Cloudflare billing period — it is a browser-enforced instruction.
+
+> **DNSSEC propagation:** After enabling DNSSEC, the status shows as "pending" while the DS record propagates (up to 24 hours). No further action is required — Cloudflare submits the DS record automatically when the domain uses Cloudflare as its DNS provider. If the domain is registered at an external registrar, add the DS record to the registrar manually using the values shown in Cloudflare DNS → Settings.
+
+#### Automate via the Cloudflare API
+
+Create an API token with the following permissions before running the script:
+
+- Zone → Zone Settings → Edit
+- Zone → DNS → Edit
+- Zone → Bot Management → Edit
+
+**How to create the token:** Cloudflare dashboard → account name → My Profile → API Tokens → Create Token → Create Custom Token → add the three permissions above scoped to your zone → Continue to summary → Create Token. Copy the token — it is shown only once.
+
+```powershell
+# -----------------------------------------------------------------------
+# CONFIGURE THESE VARIABLES BEFORE RUNNING
+# -----------------------------------------------------------------------
+$ApiToken = "REPLACE:YOUR_CLOUDFLARE_API_TOKEN"
+$ZoneId   = "REPLACE:YOUR_CLOUDFLARE_ZONE_ID"
+# -----------------------------------------------------------------------
+
+$Headers = @{
+    "Authorization" = "Bearer $ApiToken"
+    "Content-Type"  = "application/json"
+}
+
+# Always Use HTTPS
+Invoke-RestMethod -Uri "https://api.cloudflare.com/client/v4/zones/$ZoneId/settings/always_use_https" `
+    -Method PATCH -Headers $Headers -Body '{"value":"on"}'
+
+# Minimum TLS 1.2
+Invoke-RestMethod -Uri "https://api.cloudflare.com/client/v4/zones/$ZoneId/settings/min_tls_version" `
+    -Method PATCH -Headers $Headers -Body '{"value":"1.2"}'
+
+# TLS 1.3
+Invoke-RestMethod -Uri "https://api.cloudflare.com/client/v4/zones/$ZoneId/settings/tls_1_3" `
+    -Method PATCH -Headers $Headers -Body '{"value":"zrt"}'
+
+# Security Level → High
+Invoke-RestMethod -Uri "https://api.cloudflare.com/client/v4/zones/$ZoneId/settings/security_level" `
+    -Method PATCH -Headers $Headers -Body '{"value":"high"}'
+
+# HSTS (12 months, includeSubDomains)
+Invoke-RestMethod -Uri "https://api.cloudflare.com/client/v4/zones/$ZoneId/settings/security_header" `
+    -Method PATCH -Headers $Headers `
+    -Body '{"value":{"strict_transport_security":{"enabled":true,"max_age":31536000,"include_subdomains":true,"nosniff":true}}}'
+
+# DNSSEC
+Invoke-RestMethod -Uri "https://api.cloudflare.com/client/v4/zones/$ZoneId/dnssec" `
+    -Method PATCH -Headers $Headers -Body '{"status":"active"}'
+
+# Bot Fight Mode (requires Zone → Bot Management → Edit permission)
+Invoke-RestMethod -Uri "https://api.cloudflare.com/client/v4/zones/$ZoneId/bot_management" `
+    -Method PUT -Headers $Headers -Body '{"fight_mode":true}'
+
+Write-Host "All zone security settings applied."
+```
+
+> **Verify SPF, DKIM, and DMARC:** Before finalizing the setup, confirm that your DNS zone contains exactly one SPF record (`v=spf1 ... -all`), a valid DKIM selector record, and exactly one DMARC record (`v=DMARC1 ...`). Multiple records of the same type — particularly duplicate DMARC records — cause enforcement to be silently skipped by receiving mail servers. Use a public DNS lookup tool to verify.
+
+---
+
 ## 6. Validate the File
 
 Before directing any users to enroll, confirm the service discovery file is reachable, returns the correct headers, and contains the correct content. Run the following checks from any machine with `curl` installed (macOS Terminal, Linux, Windows Terminal, or PowerShell 7+).
@@ -1193,4 +1369,4 @@ $Response.Headers["Content-Type"]
 
 ---
 
-*This document is part of the UniFy Endpoint – Microsoft Intune iOS/iPadOS Baseline series. Document maintained by Yoennis Olmo - Sr. Modern Work Consultant.*
+*This document is part of the UniFy Endpoint – Microsoft Intune iOS/iPadOS Baseline series.*
