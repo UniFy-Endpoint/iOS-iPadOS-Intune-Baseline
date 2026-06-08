@@ -813,6 +813,8 @@ The Worker is deployed but responds only on a `*.workers.dev` URL. Attach it to 
 - **Zone:** Select your domain
 - Select **Add route**
 
+> **Route prerequisite:** The route approach requires a proxied DNS record for your domain to already exist in Cloudflare. Without an existing A or AAAA record with the Cloudflare proxy enabled (orange cloud), the route will not receive any traffic. If your domain has no existing proxied record, use the **Custom domain** approach instead — it creates the DNS record automatically.
+
 #### Confirm HTTPS
 
 Cloudflare provisions HTTPS for all domains on the free plan automatically. No certificate configuration or management is required.
@@ -842,10 +844,11 @@ $WranglerToml = @"
 name = "$ScriptName"
 main = "src/worker.js"
 compatibility_date = "2024-01-01"
+workers_dev = false
 
 [[routes]]
-pattern = "$Domain/.well-known/com.apple.remotemanagement"
-zone_name = "$Domain"
+pattern = "$Domain"
+custom_domain = true
 "@
 Set-Content -Path "$ProjectDir\wrangler.toml" -Value $WranglerToml -Encoding utf8NoBOM
 
@@ -882,8 +885,8 @@ Set-Location ..
 
 Write-Host ""
 Write-Host "--- Deployment complete ---"
-Write-Host "Worker name : $ScriptName"
-Write-Host "Route       : $Domain/.well-known/com.apple.remotemanagement"
+Write-Host "Worker name   : $ScriptName"
+Write-Host "Custom domain : $Domain"
 Write-Host ""
 Write-Host "Run the validation commands in Section 6 of this guide to confirm the deployment."
 ```
@@ -891,6 +894,10 @@ Write-Host "Run the validation commands in Section 6 of this guide to confirm th
 > **What the script creates — and what it does not do automatically:**
 >
 > The script creates a local project folder (named after your Worker) containing two files: `wrangler.toml` (Worker configuration) and `src/worker.js` (the Worker code). These local files are used by `wrangler deploy` to upload the Worker to Cloudflare.
+>
+> **`custom_domain = true`** registers your domain as a Cloudflare Workers custom domain. Cloudflare automatically creates a proxied DNS record for the root domain — no manual DNS configuration is required. All traffic for the domain is routed through the Worker; any path not handled by the Worker code returns HTTP 404.
+>
+> **`workers_dev = false`** disables the default `*.workers.dev` URL so the Worker is only accessible via your custom domain. The workers.dev entries remain visible in the Cloudflare dashboard as inactive toggles — this is expected behaviour and the entries cannot be removed from the dashboard view.
 >
 > After deployment completes, the local files and the live Worker on Cloudflare are **not linked**. Cloudflare hosts and runs the Worker independently — changes to the local files do not automatically appear in Cloudflare, and the Worker does not read from your local machine after the initial deploy.
 >
@@ -950,29 +957,31 @@ if (-not $UploadResponse.success) {
 }
 Write-Host "Worker script uploaded."
 
-# --- Step 2: Add a route to bind the Worker to the service discovery path ---
-Write-Host "Adding route for '$Domain/.well-known/com.apple.remotemanagement'..."
-$RouteBody = @{
-    pattern = "$Domain/.well-known/com.apple.remotemanagement"
-    script  = $ScriptName
+# --- Step 2: Register the domain as a Workers custom domain ---
+Write-Host "Registering '$Domain' as a custom domain for Worker '$ScriptName'..."
+$DomainBody = @{
+    zone_id     = $ZoneId
+    hostname    = $Domain
+    service     = $ScriptName
+    environment = "production"
 } | ConvertTo-Json
 
-$RouteResponse = Invoke-RestMethod `
-    -Uri     "https://api.cloudflare.com/client/v4/zones/$ZoneId/workers/routes" `
-    -Method  POST `
+$DomainResponse = Invoke-RestMethod `
+    -Uri     "https://api.cloudflare.com/client/v4/accounts/$AccountId/workers/domains" `
+    -Method  PUT `
     -Headers ($AuthHeaders + @{ "Content-Type" = "application/json" }) `
-    -Body    $RouteBody
+    -Body    $DomainBody
 
-if (-not $RouteResponse.success) {
-    Write-Error "Route creation failed: $($RouteResponse.errors | ConvertTo-Json)"
+if (-not $DomainResponse.success) {
+    Write-Error "Custom domain registration failed: $($DomainResponse.errors | ConvertTo-Json)"
     exit 1
 }
-Write-Host "Route added (ID: $($RouteResponse.result.id))."
+Write-Host "Custom domain registered (hostname: $($DomainResponse.result.hostname))."
 
 Write-Host ""
 Write-Host "--- Deployment complete ---"
-Write-Host "Worker name : $ScriptName"
-Write-Host "Route       : $Domain/.well-known/com.apple.remotemanagement"
+Write-Host "Worker name   : $ScriptName"
+Write-Host "Custom domain : $Domain"
 Write-Host ""
 Write-Host "Run the validation commands in Section 6 of this guide to confirm the deployment."
 ```
@@ -981,7 +990,7 @@ Write-Host "Run the validation commands in Section 6 of this guide to confirm th
 
 ### 5.7 Verify Deployment
 
-Proceed to [Section 6 — Validate the File](#6-validate-the-file) once the Worker is deployed and the route shows as active in the Cloudflare dashboard.
+Proceed to [Section 6 — Validate the File](#6-validate-the-file) once the Worker is deployed and the custom domain shows as **Production** under **Workers & Pages → Settings → Domains & Routes** in the Cloudflare dashboard.
 
 ---
 
@@ -1177,7 +1186,10 @@ $Response.Headers["Content-Type"]
 | Azure custom domain validation fails | TXT record has not propagated yet | Wait 30–60 minutes after adding the TXT record to [your-dns-provider] DNS before retrying validation in the Azure portal |
 | GitHub Pages returns HTTP 404 even after DNS records are set | `.nojekyll` file is missing from the repository root | Without `.nojekyll`, Jekyll silently ignores all directories beginning with `.`, including `.well-known`; add an empty `.nojekyll` file to the repository root, commit, and push |
 | Wrangler `deploy` returns an authentication error | Wrangler session has expired or the account has changed | Run `wrangler login` again to re-authenticate with your Cloudflare account |
-| Cloudflare API script returns `Route creation failed` | Worker script upload failed, or Account ID / Zone ID is incorrect | Confirm `AccountId` and `ZoneId` match the values in the Cloudflare dashboard right sidebar; verify the API token has both `Workers Scripts:Edit` and `Workers Routes:Edit` permissions scoped to the correct zone |
+| Cloudflare API script returns `Custom domain registration failed` | Worker script upload failed, or Account ID / Zone ID is incorrect | Confirm `AccountId` and `ZoneId` match the values in the Cloudflare dashboard right sidebar; verify the API token has `Workers Scripts:Edit` permission scoped to the correct account |
+| Worker is deployed but `curl` returns `Could not resolve host` | The route approach was used without a pre-existing proxied DNS record, so the domain has no address to resolve | Switch to `custom_domain = true` in `wrangler.toml` and redeploy — Cloudflare creates the DNS record automatically; or manually add a proxied A or AAAA record for the domain in Cloudflare DNS before using the route approach |
+| `curl` returns `Could not resolve host` immediately after a successful deployment | Local DNS negative cache — the domain returned no records before the Worker was configured, and that result is still cached | Wait 5–30 minutes for the local DNS TTL to expire, or test from a different device or network that has not previously attempted to resolve the domain |
+| Cloudflare dashboard shows `workers.dev` URLs as **Inactive** | `workers_dev = false` is set in `wrangler.toml` | This is correct and expected — the Worker is accessible only via the custom domain; the Inactive entries are permanent UI toggles and cannot be removed from the dashboard |
 
 ---
 
