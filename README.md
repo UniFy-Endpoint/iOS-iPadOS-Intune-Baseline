@@ -8,7 +8,7 @@ This practical, ready-to-import baseline for iOS and iPadOS devices includes JSO
 
 | | |
 |---|---|
-| **Author** | Sr. Modern Work Consultant |
+| **Author** | Yoennis Olmo, Sr. Modern Work Consultant |
 | **CIS Reference** | CIS Apple iOS/iPadOS 26 Benchmark v1.0.0 |
 | **Microsoft Reference** | iOS/iPadOS Security Configuration Framework (updated April 2026) |
 | **Last Updated** | June 2026 |
