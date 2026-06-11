@@ -1,7 +1,5 @@
 # iOS/iPadOS Microsoft Intune Baseline
 
-![GitHub Stars](https://badgen.net/github/stars/UniFy-Endpoint/iOS-iPadOS-Intune-Baseline?label=Stars)  ![GitHub Forks](https://badgen.net/github/forks/UniFy-Endpoint/iOS-iPadOS-Intune-Baseline?label=Forks)
-
 This practical, ready-to-import baseline for iOS and iPadOS devices includes JSON policies and deployment guides for both corporate (supervised/ADE) and personal (BYOD) device management. The framework is grounded in Microsoft's official deployment guidance, iOS/iPadOS CIS Benchmark recommendations, and real-world enterprise experience.
 
 ---
